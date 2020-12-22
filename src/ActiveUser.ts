@@ -1,22 +1,23 @@
 import { Disposable, window, workspace } from "vscode";
+import Activity from "./activity";
 import { Status } from "./structures";
 
 export default class ActiveUser implements Disposable {
-  private _status: Status | null = null;
+  private _activity: Activity | null = null;
 
-  public get status() {
-    return this._status;
+  public constructor() {
+    this._activity = new Activity();
   }
 
-  public getLanguage() {
-    if (window.activeTextEditor) {
-      return window.activeTextEditor.document.languageId;
-    }
+  public get activity() {
+    return this._activity;
+  }
 
-    return null;
+  public populateActivity() {
+    this._activity?.populateActivity();
   }
 
   public dispose() {
-    this._status = null;
+    this._activity = null;
   }
 }

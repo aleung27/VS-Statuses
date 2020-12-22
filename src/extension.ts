@@ -9,11 +9,6 @@ export function activate(context: vscode.ExtensionContext) {
   // Use the console to output diagnostic information (console.log) and errors (console.error)
   // This line of code will only be executed once when your extension is activated
   console.log('Congratulations, your extension "vstatus" is now active!');
-  console.log(
-    vscode.workspace.workspaceFolders
-      ? vscode.workspace.workspaceFolders[0]
-      : vscode.window.activeTextEditor?.document
-  );
 
   // Use vscode.workspace.workspaceFolders for root folder name and vscode.window.activeTextEditor.document for most recently focused document
 
@@ -24,7 +19,8 @@ export function activate(context: vscode.ExtensionContext) {
     // The code you place here will be executed every time your command is executed
 
     const user = new ActiveUser();
-    console.log(user.getLanguage());
+    user.populateActivity();
+    console.log(user);
     // Display a message box to the user
     vscode.window.showInformationMessage("Hello VS Code!");
   });
