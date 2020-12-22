@@ -1,31 +1,36 @@
-// The module 'vscode' contains the VS Code extensibility API
-// Import the module and reference it with the alias vscode in your code below
-import * as vscode from "vscode";
+import { commands, ExtensionContext, window } from "vscode";
 import ActiveUser from "./ActiveUser";
 
-// this method is called when your extension is activated
-// your extension is activated the very first time the command is executed
-export function activate(context: vscode.ExtensionContext) {
-  // Use the console to output diagnostic information (console.log) and errors (console.error)
-  // This line of code will only be executed once when your extension is activated
-  console.log('Congratulations, your extension "vstatus" is now active!');
+const user = new ActiveUser();
+let interval: NodeJS.Timeout | null = null;
 
-  // Use vscode.workspace.workspaceFolders for root folder name and vscode.window.activeTextEditor.document for most recently focused document
+export function activate(context: ExtensionContext) {
+  console.log("Vstatus Activated!");
+
+  let update = commands.registerCommand("vstatus.update", () => {
+    interval = setInterval(() => {
+      user.populateActivity();
+      console.log(user);
+    }, 10000);
+  });
+
+  let stopUpdate = commands.registerCommand("vstatus.stopUpdate", () => {
+    if (interval) {
+      clearInterval(interval);
+    }
+  });
 
   // The command has been defined in the package.json file
   // Now provide the implementation of the command with registerCommand
   // The commandId parameter must match the command field in package.json
-  let disposable = vscode.commands.registerCommand("vstatus.helloWorld", () => {
+  let disposable = commands.registerCommand("vstatus.helloWorld", () => {
     // The code you place here will be executed every time your command is executed
 
-    const user = new ActiveUser();
-    user.populateActivity();
-    console.log(user);
     // Display a message box to the user
-    vscode.window.showInformationMessage("Hello VS Code!");
+    window.showInformationMessage("Hello VS Code!");
   });
 
-  context.subscriptions.push(disposable);
+  context.subscriptions.push(update, disposable, stopUpdate);
 }
 
 // this method is called when your extension is deactivated
