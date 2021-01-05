@@ -1,21 +1,22 @@
 import { commands, ExtensionContext, window, authentication } from "vscode";
 
 import auth from "./commands/auth";
-import ActiveUser from "./ActiveUser";
+import update from "./commands/update";
 import Util from "./utilities/util";
-
-const user = new ActiveUser();
-let interval: NodeJS.Timeout | null = null;
 
 export function activate(context: ExtensionContext) {
   Util.context = context;
+  let interval: NodeJS.Timeout | null = null;
   console.log("Vstatus Activated!");
 
-  let update = commands.registerCommand("vstatus.update", () => {
-    interval = setInterval(() => {
-      user.populateActivity();
-      console.log(user);
-    }, 10000);
+  let updateDisp = commands.registerCommand("vstatus.update", async () => {
+    const wrapper = async () => {
+      const data = await update();
+      console.log(data);
+    };
+
+    wrapper();
+    interval = setInterval(wrapper, 60000);
   });
 
   let stopUpdate = commands.registerCommand("vstatus.stopUpdate", () => {
@@ -24,12 +25,12 @@ export function activate(context: ExtensionContext) {
     }
   });
 
-  const authenticateDisp = commands.registerCommand(
+  const authDisp = commands.registerCommand(
     "vstatus.auth",
     async () => await auth()
   );
 
-  context.subscriptions.push(update, stopUpdate, authenticateDisp);
+  context.subscriptions.push(updateDisp, stopUpdate, authDisp);
 }
 
 // this method is called when your extension is deactivated
