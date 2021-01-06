@@ -7,9 +7,9 @@ import Util from "./utilities/util";
 export function activate(context: ExtensionContext) {
   Util.context = context;
   let interval: NodeJS.Timeout | null = null;
-  console.log("Vstatus Activated!");
+  console.log("VS Statuses Activated!");
 
-  let updateDisp = commands.registerCommand("vstatus.update", async () => {
+  let updateDisp = commands.registerCommand("vs-statuses.update", async () => {
     const wrapper = async () => {
       const data = await update();
       console.log(data);
@@ -19,14 +19,14 @@ export function activate(context: ExtensionContext) {
     interval = setInterval(wrapper, 60000);
   });
 
-  let stopUpdate = commands.registerCommand("vstatus.stopUpdate", () => {
+  let stopUpdate = commands.registerCommand("vs-statuses.stopUpdate", () => {
     if (interval) {
       clearInterval(interval);
     }
   });
 
   const authDisp = commands.registerCommand(
-    "vstatus.auth",
+    "vs-statuses.auth",
     async () => await auth()
   );
 

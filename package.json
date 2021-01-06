@@ -1,6 +1,6 @@
 {
-	"name": "vstatus",
-	"displayName": "Vstatus",
+	"name": "vs-statuses",
+	"displayName": "VS Statuses",
 	"description": "",
 	"version": "0.0.1",
 	"engines": {
@@ -16,25 +16,40 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "vstatus.helloWorld",
-				"title": "Hello World"
-			},
-			{
-				"command": "vstatus.update",
+				"command": "vs-statuses.update",
 				"title": "Send updates",
-				"category": "Vstatus"
+				"category": "VS Statuses"
 			},
 			{
-				"command": "vstatus.stopUpdate",
+				"command": "vs-statuses.stopUpdate",
 				"title": "Stop updates",
-				"category": "Vstatus"
+				"category": "VS Statuses"
 			},
 			{
-				"command": "vstatus.auth",
+				"command": "vs-statuses.auth",
 				"title": "Authenticate with Github",
-				"category": "Vstatus"
+				"category": "VS Statuses"
 			}
-		]
+		],
+		"viewsContainers": {
+			"activitybar": [
+				{
+					"id": "vs-statuses",
+					"title": "VS Statuses",
+					"icon": "media/placeholder.svg"
+				}
+			]
+		},
+		"views": {
+			"vs-statuses": [
+				{
+					"type": "webview",
+					"id": "view-statuses",
+					"name": "VS Statuses",
+					"icon": "media/dep.svg"
+				}
+			]
+		}
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
