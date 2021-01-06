@@ -5,13 +5,13 @@ import api from "../utilities/api";
 import ActivityInterface from "../interfaces/ActivityInterface";
 import Util from "../utilities/util";
 import auth from "./auth";
-
+import Status from "../interfaces/Status";
 /**
  * Function responsible for POSTing the current activity of the user as well
  * as receiving back an array of objects representing the activity of
  * all friends of the user who have an account. This is returned by the func
  */
-const update = async () => {
+const update = async (): Promise<Status[]> => {
   // Pull all the data for the current activity
   const activity: ActivityInterface = {
     timestamp: Date.now(),
@@ -37,7 +37,7 @@ const update = async () => {
     if (choice === "Proceed") {
       auth();
     }
-    return;
+    return [];
   }
 
   try {
@@ -65,6 +65,8 @@ const update = async () => {
   } catch (err) {
     console.log(err);
   }
+
+  return [];
 };
 
 export default update;
