@@ -4,6 +4,7 @@ import {
   WebviewViewResolveContext,
   CancellationToken,
   Uri,
+  Webview,
 } from "vscode";
 
 import Status from "../interfaces/Status";
@@ -12,55 +13,47 @@ import { baseUrl } from "../utilities/api";
 
 export default class StatusViewProvider implements WebviewViewProvider {
   public static readonly viewType = "vs-statuses.view";
-  private _view?: WebviewView;
-  private _statuses: Status[];
+  public view?: WebviewView;
 
-  constructor(private readonly _extensionUri: Uri) {
-    this._statuses = [];
-  }
-
-  public updateStatuses(newStatuses: Status[]) {
-    this._statuses = newStatuses;
-  }
+  constructor(private readonly _extensionUri: Uri) {}
 
   public resolveWebviewView(
     webviewView: WebviewView,
     context: WebviewViewResolveContext,
     token: CancellationToken
   ) {
-    this._view = webviewView;
+    this.view = webviewView;
 
     webviewView.webview.options = {
       enableScripts: true,
       localResourceRoots: [this._extensionUri],
     };
 
+    webviewView.webview.html = this.getWebviewHtml(webviewView.webview);
+  }
+
+  private getWebviewHtml(webview: Webview) {
+    const scriptUri = webview.asWebviewUri(
+      Uri.joinPath(this._extensionUri, "media", "main.js")
+    );
+    const momentUri = webview.asWebviewUri(
+      Uri.joinPath(this._extensionUri, "node_modules", "moment", "moment.js")
+    );
+
     const nonce = getNonce();
 
-    webviewView.webview.html = `<!DOCTYPE html>
+    return `<!DOCTYPE html>
     <html lang="en">
     <head>
       <meta charset="UTF-8">
-      <!--
-        Use a content security policy to only allow loading images from https or from our extension directory,
-        and only allow scripts that have a specific nonce.
-      -->
-      <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${baseUrl}; script-src 'nonce-${nonce}';">
+      <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}'; img-src https: *.githubusercontent.com;">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      
-      <title>Cat Colors</title>
+      <script nonce="${nonce}" src="${momentUri}"></script>
     </head>
     <body>
-      Welcome to the view
-      <div class="main"/>
+      <ul class="main"></ul>
+      <script nonce="${nonce}" src="${scriptUri}"></script>
     </body>
-    <script nonce="${nonce}">
-      console.log("here");
-      let parent = document.querySelector(".main");
-      let el = document.createElement("div");
-      el.innerHTML += "New Div";
-      parent.appendChild(el);
-    </script>
     </html>`;
   }
 }

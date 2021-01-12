@@ -1,5 +1,6 @@
 import { window, workspace } from "vscode";
 import { basename } from "path";
+import moment from "moment";
 
 import api from "../utilities/api";
 import ActivityInterface from "../interfaces/ActivityInterface";
@@ -14,7 +15,7 @@ import Status from "../interfaces/Status";
 const update = async (): Promise<Status[]> => {
   // Pull all the data for the current activity
   const activity: ActivityInterface = {
-    timestamp: Date.now(),
+    timestamp: moment().unix(),
     language: window.activeTextEditor
       ? window.activeTextEditor.document.languageId
       : null,
@@ -53,11 +54,11 @@ const update = async (): Promise<Status[]> => {
     if (res.headers["access-token"] && res.headers["refresh-token"]) {
       await Util.context.globalState.update(
         "accessToken",
-        res.headers.get("access-token")
+        res.headers["access-token"]
       );
       await Util.context.globalState.update(
         "refreshToken",
-        res.headers.get("refresh-token")
+        res.headers["refresh-token"]
       );
     }
 

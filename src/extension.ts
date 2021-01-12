@@ -20,7 +20,7 @@ export function activate(context: ExtensionContext) {
   let updateDisp = commands.registerCommand("vs-statuses.update", async () => {
     const wrapper = async () => {
       const data = await update();
-      provider.updateStatuses(data);
+      provider.view?.webview.postMessage({ command: "update", statuses: data });
     };
 
     wrapper();

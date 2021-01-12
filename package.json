@@ -73,8 +73,10 @@
 		"vscode-test": "^1.4.1"
 	},
 	"dependencies": {
+		"@types/moment": "^2.13.0",
 		"axios": "^0.21.1",
 		"https": "^1.0.0",
-		"jsdoc": "^3.6.6"
+		"jsdoc": "^3.6.6",
+		"moment": "^2.29.1"
 	}
 }
