@@ -36,6 +36,29 @@ export default class StatusViewProvider implements WebviewViewProvider {
     const scriptUri = webview.asWebviewUri(
       Uri.joinPath(this._extensionUri, "media", "main.js")
     );
+    const mainCssUri = webview.asWebviewUri(
+      Uri.joinPath(this._extensionUri, "media", "main.css")
+    );
+
+    const codiconsUri = webview.asWebviewUri(
+      Uri.joinPath(
+        this._extensionUri,
+        "node_modules",
+        "vscode-codicons",
+        "dist",
+        "codicon.css"
+      )
+    );
+    const codiconsFontUri = webview.asWebviewUri(
+      Uri.joinPath(
+        this._extensionUri,
+        "node_modules",
+        "vscode-codicons",
+        "dist",
+        "codicon.ttf"
+      )
+    );
+
     const momentUri = webview.asWebviewUri(
       Uri.joinPath(this._extensionUri, "node_modules", "moment", "moment.js")
     );
@@ -46,12 +69,16 @@ export default class StatusViewProvider implements WebviewViewProvider {
     <html lang="en">
     <head>
       <meta charset="UTF-8">
-      <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource}; script-src 'nonce-${nonce}'; img-src https: *.githubusercontent.com;">
+      <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource} ${codiconsUri}; script-src 'nonce-${nonce}'; img-src https: *.githubusercontent.com; font-src ${codiconsFontUri};">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link href="${mainCssUri}" rel="stylesheet" />
+      <link href="${codiconsUri}" rel="stylesheet" />
+
       <script nonce="${nonce}" src="${momentUri}"></script>
     </head>
     <body>
-      <ul class="main"></ul>
+      <div class="main"></div>
       <script nonce="${nonce}" src="${scriptUri}"></script>
     </body>
     </html>`;

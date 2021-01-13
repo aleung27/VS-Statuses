@@ -47,24 +47,19 @@
    * @param {Array<{ value: string }>} statuses
    */
   function updateStatuses(statuses) {
-    const ul = document.querySelector(".main");
-    ul.textContent = "";
+    const div = document.querySelector(".main");
+    div.textContent = "";
 
     for (const status of statuses) {
       // List element for each status we want to create
-      const li = document.createElement("li");
-      li.className = "entry";
+      const entryDiv = document.createElement("div");
+      entryDiv.className = "entry";
 
-      // Main div for the li containing the staus info
-      const div = document.createElement("div");
-      div.className = "status";
+      entryDiv.appendChild(createProfile(status));
+      entryDiv.appendChild(statusInfo(status));
 
-      div.appendChild(createProfile(status));
-      div.appendChild(statusInfo(status));
-
-      // Append the div to the li and then the li to the ul
-      li.appendChild(div);
-      ul.appendChild(li);
+      // Append the div to the main div
+      div.appendChild(entryDiv);
     }
 
     // Update the saved state
@@ -86,9 +81,11 @@
 
   function statusInfo(status) {
     const infoDiv = document.createElement("div");
+    infoDiv.className = "info";
 
     // The name and time stamp
     const nameDiv = document.createElement("div");
+    nameDiv.className = "name";
     const nameSpan = document.createElement("span");
     const timestamp = document.createElement("span");
 
@@ -106,6 +103,7 @@
     // Custom message
     if (status.customMessage) {
       const customStatusDiv = document.createElement("div");
+      customStatusDiv.className = "custom-status";
       customStatusDiv.innerHTML = status.customMessage;
 
       infoDiv.appendChild(customStatusDiv);
@@ -114,6 +112,7 @@
     // The file name and langugage icon
     if (status.filename) {
       const fileDiv = document.createElement("div");
+      fileDiv.className = "file";
       const languageImg = document.createElement("img");
       const fileSpan = document.createElement("span");
 
@@ -135,12 +134,11 @@
     // The workspace folder and icon
     if (status.workspaceName) {
       const workspaceDiv = document.createElement("div");
-      const folderImg = document.createElement("img");
+      workspaceDiv.className = "workspace";
+      const folderImg = document.createElement("i");
+      folderImg.className = "codicon codicon-folder";
       const workspaceSpan = document.createElement("span");
-
-      // TODO: add real folder icon
       workspaceSpan.innerHTML = status.workspaceName;
-      folderImg.src = status.profilePicUrl;
 
       workspaceDiv.appendChild(folderImg);
       workspaceDiv.appendChild(workspaceSpan);

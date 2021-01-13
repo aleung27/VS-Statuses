@@ -1,0 +1,55 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+
+    .entry {
+        display: flex;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+
+        .profile {
+            width: 20%;
+
+            .profile-img {
+                vertical-align: middle;
+                width: 100%;
+                border-radius: 50%;
+            }
+        } 
+        
+        .info {
+            width: 80%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            .name {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+            }
+
+            .file, .workspace {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                
+                img {
+                    width: 1rem;
+                    height: 1rem;
+                }
+
+                .codicon {    
+                    padding-right: 0.5rem;;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
