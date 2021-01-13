@@ -30,18 +30,18 @@
           justify-content: flex-start;
 }
 
-.main .entry .profile {
-  width: 20%;
-}
-
 .main .entry .profile .profile-img {
   vertical-align: middle;
-  width: 100%;
+  min-width: 50px;
+  min-height: 50px;
+  max-width: 50px;
+  max-height: 50px;
   border-radius: 50%;
 }
 
 .main .entry .info {
   width: 80%;
+  padding-left: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -70,7 +70,21 @@
           align-items: center;
 }
 
-.main .entry .info .file, .main .entry .info .workspace {
+.main .entry .info .name .dot-typing {
+  position: relative;
+  left: -9999px;
+  width: 6px;
+  height: 6px;
+  border-radius: 5px;
+  color: gray;
+  -webkit-box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+          box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+  -webkit-animation: dotTyping 2s infinite linear;
+          animation: dotTyping 2s infinite linear;
+}
+
+.main .entry .info .file,
+.main .entry .info .workspace {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -83,13 +97,77 @@
           align-items: center;
 }
 
-.main .entry .info .file img, .main .entry .info .workspace img {
+.main .entry .info .file img,
+.main .entry .info .workspace img {
   width: 1rem;
   height: 1rem;
 }
 
-.main .entry .info .file .codicon, .main .entry .info .workspace .codicon {
-  padding-right: 0.5rem;
+.main .entry .info .file .codicon,
+.main .entry .info .workspace .codicon {
+  padding-right: 0.2rem;
   font-size: 12px;
+}
+
+@-webkit-keyframes dotTyping {
+  0% {
+    -webkit-box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+            box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+  }
+  16.667% {
+    -webkit-box-shadow: 9984px -5px 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+            box-shadow: 9984px -5px 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+  }
+  33.333% {
+    -webkit-box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+            box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+  }
+  50% {
+    -webkit-box-shadow: 9984px 0 0 0 gray, 9994px -5px 0 0 gray, 10004px 0 0 0 gray;
+            box-shadow: 9984px 0 0 0 gray, 9994px -5px 0 0 gray, 10004px 0 0 0 gray;
+  }
+  66.667% {
+    -webkit-box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+            box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+  }
+  83.333% {
+    -webkit-box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px -5px 0 0 gray;
+            box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px -5px 0 0 gray;
+  }
+  100% {
+    -webkit-box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+            box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+  }
+}
+
+@keyframes dotTyping {
+  0% {
+    -webkit-box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+            box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+  }
+  16.667% {
+    -webkit-box-shadow: 9984px -5px 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+            box-shadow: 9984px -5px 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+  }
+  33.333% {
+    -webkit-box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+            box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+  }
+  50% {
+    -webkit-box-shadow: 9984px 0 0 0 gray, 9994px -5px 0 0 gray, 10004px 0 0 0 gray;
+            box-shadow: 9984px 0 0 0 gray, 9994px -5px 0 0 gray, 10004px 0 0 0 gray;
+  }
+  66.667% {
+    -webkit-box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+            box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+  }
+  83.333% {
+    -webkit-box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px -5px 0 0 gray;
+            box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px -5px 0 0 gray;
+  }
+  100% {
+    -webkit-box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+            box-shadow: 9984px 0 0 0 gray, 9994px 0 0 0 gray, 10004px 0 0 0 gray;
+  }
 }
 /*# sourceMappingURL=main.css.map */

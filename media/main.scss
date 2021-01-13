@@ -1,55 +1,95 @@
-.main {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 0;
-    margin: 0;
+$dot-color: gray;
 
-    .entry {
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  margin: 0;
+
+  .entry {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    .profile .profile-img {
+      vertical-align: middle;
+      min-width: 50px;
+      min-height: 50px;
+      max-width: 50px;
+      max-height: 50px;
+      border-radius: 50%;
+    }
+
+    .info {
+      width: 80%;
+      padding-left: 0.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .name {
         display: flex;
-        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+        .dot-typing {
+            position: relative;
+            left: -9999px;
+            width: 6px;
+            height: 6px;
+            border-radius: 5px;
+            color: $dot-color;
+            box-shadow: 9984px 0 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px 0 0 0 $dot-color;
+            animation: dotTyping 2s infinite linear;
+          }
+      }
+
+      .file,
+      .workspace {
+        display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: flex-start;
 
-        .profile {
-            width: 20%;
-
-            .profile-img {
-                vertical-align: middle;
-                width: 100%;
-                border-radius: 50%;
-            }
-        } 
-        
-        .info {
-            width: 80%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-
-            .name {
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-            }
-
-            .file, .workspace {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                
-                img {
-                    width: 1rem;
-                    height: 1rem;
-                }
-
-                .codicon {    
-                    padding-right: 0.5rem;;
-                    font-size: 12px;
-                }
-            }
+        img {
+          width: 1rem;
+          height: 1rem;
         }
+
+        .codicon {
+          padding-right: 0.2rem;
+          font-size: 12px;
+        }
+      }
     }
+  }
 }
+
+// Shout out to Zongbin https://codepen.io/nzbin/pen/GGrXbp
+@keyframes dotTyping {
+    0% {
+      box-shadow: 9984px 0 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px 0 0 0 $dot-color;
+    }
+    16.667% {
+      box-shadow: 9984px -5px 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px 0 0 0 $dot-color;
+    }
+    33.333% {
+      box-shadow: 9984px 0 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px 0 0 0 $dot-color;
+    }
+    50% {
+      box-shadow: 9984px 0 0 0 $dot-color, 9994px -5px 0 0 $dot-color, 10004px 0 0 0 $dot-color;
+    }
+    66.667% {
+      box-shadow: 9984px 0 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px 0 0 0 $dot-color;
+    }
+    83.333% {
+      box-shadow: 9984px 0 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px -5px 0 0 $dot-color;
+    }
+    100% {
+      box-shadow: 9984px 0 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px 0 0 0 $dot-color;
+    }
+  }
+  

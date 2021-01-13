@@ -87,7 +87,6 @@
     const nameDiv = document.createElement("div");
     nameDiv.className = "name";
     const nameSpan = document.createElement("span");
-    const timestamp = document.createElement("span");
 
     if (status.displayName) {
       nameSpan.innerHTML = status.displayName;
@@ -95,9 +94,21 @@
       nameSpan.innerHTML = status.username;
     }
 
-    timestamp.innerHTML = moment(moment.unix(status.timestamp)).fromNow(true);
     nameDiv.appendChild(nameSpan);
-    nameDiv.appendChild(timestamp);
+
+    if (moment().unix() - status.timestamp <= 90) {
+      // We consider under around ~90secs to be still active and typing
+      // Render the keyboard symbol instead of a time
+
+      const typingDot = document.createElement("div");
+      typingDot.className = "dot-typing";
+      nameDiv.appendChild(typingDot);
+    } else {
+      const timestamp = document.createElement("span");
+      timestamp.innerHTML = moment(moment.unix(status.timestamp)).fromNow(true);
+      nameDiv.appendChild(timestamp);
+    }
+
     infoDiv.appendChild(nameDiv);
 
     // Custom message
