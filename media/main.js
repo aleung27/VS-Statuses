@@ -1,5 +1,6 @@
 // @ts-check
 // This script will be run within the webview itself
+
 // It cannot access the main VS Code APIs directly.
 (function () {
   console.log("running...");
@@ -87,6 +88,7 @@
     const nameDiv = document.createElement("div");
     nameDiv.className = "name";
     const nameSpan = document.createElement("span");
+    nameSpan.className = "username";
 
     if (status.displayName) {
       nameSpan.innerHTML = `${status.displayName}(${status.username})`;
@@ -94,6 +96,7 @@
       nameSpan.innerHTML = status.username;
     }
 
+    nameSpan.setAttribute("title", nameSpan.innerHTML);
     nameDiv.appendChild(nameSpan);
 
     if (moment().unix() - status.timestamp <= 90) {
@@ -117,6 +120,7 @@
       const customStatusDiv = document.createElement("div");
       customStatusDiv.className = "custom-status";
       customStatusDiv.innerHTML = status.customMessage;
+      customStatusDiv.setAttribute("title", status.customMessage);
 
       infoDiv.appendChild(customStatusDiv);
     }
@@ -125,18 +129,22 @@
     if (status.filename) {
       const fileDiv = document.createElement("div");
       fileDiv.className = "file";
+
       const languageImg = document.createElement("img");
       const fileSpan = document.createElement("span");
 
+      // If a language was detected, display the icon for that
+      // otherwise we use a default fallback unknown language image
+      // TODO: link icons to language identifiers
       if (status.language) {
-        // Fallback pic should eb code-runner-output
-        // TODO: link icons to language identifiers
         languageImg.src = status.profilePicUrl;
+        languageImg.setAttribute("title", status.language);
       } else {
         languageImg.src = status.profilePicUrl;
       }
 
       fileSpan.innerHTML = status.filename;
+      fileSpan.setAttribute("title", status.filename);
       fileDiv.appendChild(languageImg);
       fileDiv.appendChild(fileSpan);
 
@@ -151,7 +159,10 @@
       folderImg.className = "codicon codicon-folder";
       const workspaceSpan = document.createElement("span");
       workspaceSpan.innerHTML = status.workspaceName;
+      workspaceSpan.setAttribute("title", status.workspaceName);
 
+      // Append the <i> and the <span> to the workspace <div> before appending
+      // to the info <div> as a whole
       workspaceDiv.appendChild(folderImg);
       workspaceDiv.appendChild(workspaceSpan);
       infoDiv.appendChild(workspaceDiv);

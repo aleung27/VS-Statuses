@@ -99,12 +99,22 @@ body {
   padding-right: 5px;
 }
 
+.main .entry .info .name .username:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
 .main .entry .info .custom-status {
   font-size: x-small;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   padding-bottom: 0.3rem;
+}
+
+.main .entry .info .custom-status:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 .main .entry .info .file,
@@ -140,6 +150,12 @@ body {
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+
+.main .entry .info .file span:hover,
+.main .entry .info .workspace span:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
 
 @-webkit-keyframes dotTyping {
