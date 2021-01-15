@@ -89,7 +89,7 @@
     const nameSpan = document.createElement("span");
 
     if (status.displayName) {
-      nameSpan.innerHTML = status.displayName;
+      nameSpan.innerHTML = `${status.displayName}(${status.username})`;
     } else {
       nameSpan.innerHTML = status.username;
     }
@@ -105,6 +105,7 @@
       nameDiv.appendChild(typingDot);
     } else {
       const timestamp = document.createElement("span");
+      timestamp.className = "timestamp";
       timestamp.innerHTML = moment(moment.unix(status.timestamp)).fromNow(true);
       nameDiv.appendChild(timestamp);
     }

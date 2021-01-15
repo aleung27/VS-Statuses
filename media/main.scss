@@ -1,4 +1,12 @@
 $dot-color: gray;
+$first-dot: 9976px;
+$second-dot: 9986px;
+$third-dot: 9996px;
+
+body {
+  padding: 0 0 0 10px;
+  overflow-x: hidden;
+}
 
 .main {
   display: flex;
@@ -14,17 +22,19 @@ $dot-color: gray;
     align-items: center;
     justify-content: flex-start;
 
-    .profile .profile-img {
-      vertical-align: middle;
+    .profile {
       min-width: 50px;
-      min-height: 50px;
-      max-width: 50px;
-      max-height: 50px;
-      border-radius: 50%;
+      .profile-img {
+        vertical-align: middle;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+      }
     }
 
     .info {
-      width: 80%;
+      width: unquote("calc(100% - 50px - 0.5rem)");
+      position: relative;
       padding-left: 0.5rem;
       display: flex;
       flex-direction: column;
@@ -35,17 +45,34 @@ $dot-color: gray;
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         .dot-typing {
-            position: relative;
-            left: -9999px;
-            width: 6px;
-            height: 6px;
-            border-radius: 5px;
-            color: $dot-color;
-            box-shadow: 9984px 0 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px 0 0 0 $dot-color;
-            animation: dotTyping 2s infinite linear;
-          }
+          position: relative;
+          left: -9999px;
+          top: 0px;
+          width: 6px;
+          height: 6px;
+          border-radius: 5px;
+          color: $dot-color;
+          box-shadow: $first-dot 0 0 0 $dot-color, $second-dot 0 0 0 $dot-color,
+            $third-dot 0 0 0 $dot-color;
+          animation: dotTyping 2s infinite linear;
+        }
+
+        .timestamp {
+          padding-right: 5px;
+        }
+      }
+
+      .custom-status {
+        font-size: x-small;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        padding-bottom: 0.3rem;
       }
 
       .file,
@@ -63,6 +90,14 @@ $dot-color: gray;
           padding-right: 0.2rem;
           font-size: 12px;
         }
+
+        span {
+          display: block;
+          width: 100%;
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
       }
     }
   }
@@ -70,26 +105,32 @@ $dot-color: gray;
 
 // Shout out to Zongbin https://codepen.io/nzbin/pen/GGrXbp
 @keyframes dotTyping {
-    0% {
-      box-shadow: 9984px 0 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px 0 0 0 $dot-color;
-    }
-    16.667% {
-      box-shadow: 9984px -5px 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px 0 0 0 $dot-color;
-    }
-    33.333% {
-      box-shadow: 9984px 0 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px 0 0 0 $dot-color;
-    }
-    50% {
-      box-shadow: 9984px 0 0 0 $dot-color, 9994px -5px 0 0 $dot-color, 10004px 0 0 0 $dot-color;
-    }
-    66.667% {
-      box-shadow: 9984px 0 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px 0 0 0 $dot-color;
-    }
-    83.333% {
-      box-shadow: 9984px 0 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px -5px 0 0 $dot-color;
-    }
-    100% {
-      box-shadow: 9984px 0 0 0 $dot-color, 9994px 0 0 0 $dot-color, 10004px 0 0 0 $dot-color;
-    }
+  0% {
+    box-shadow: $first-dot 0 0 0 $dot-color, $second-dot 0 0 0 $dot-color,
+      $third-dot 0 0 0 $dot-color;
   }
-  
+  16.667% {
+    box-shadow: $first-dot -5px 0 0 $dot-color, $second-dot 0 0 0 $dot-color,
+      $third-dot 0 0 0 $dot-color;
+  }
+  33.333% {
+    box-shadow: $first-dot 0 0 0 $dot-color, $second-dot 0 0 0 $dot-color,
+      $third-dot 0 0 0 $dot-color;
+  }
+  50% {
+    box-shadow: $first-dot 0 0 0 $dot-color, $second-dot -5px 0 0 $dot-color,
+      $third-dot 0 0 0 $dot-color;
+  }
+  66.667% {
+    box-shadow: $first-dot 0 0 0 $dot-color, $second-dot 0 0 0 $dot-color,
+      $third-dot 0 0 0 $dot-color;
+  }
+  83.333% {
+    box-shadow: $first-dot 0 0 0 $dot-color, $second-dot 0 0 0 $dot-color,
+      $third-dot -5px 0 0 $dot-color;
+  }
+  100% {
+    box-shadow: $first-dot 0 0 0 $dot-color, $second-dot 0 0 0 $dot-color,
+      $third-dot 0 0 0 $dot-color;
+  }
+}
