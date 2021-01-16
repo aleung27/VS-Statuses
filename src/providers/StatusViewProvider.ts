@@ -36,6 +36,13 @@ export default class StatusViewProvider implements WebviewViewProvider {
     const scriptUri = webview.asWebviewUri(
       Uri.joinPath(this._extensionUri, "media", "main.js")
     );
+    const iconsUri = webview.asWebviewUri(
+      Uri.joinPath(this._extensionUri, "media", "icons.js")
+    );
+    const iconsImagesUri = webview.asWebviewUri(
+      Uri.joinPath(this._extensionUri, "icons/")
+    );
+
     const mainCssUri = webview.asWebviewUri(
       Uri.joinPath(this._extensionUri, "media", "main.css")
     );
@@ -69,13 +76,15 @@ export default class StatusViewProvider implements WebviewViewProvider {
     <html lang="en">
     <head>
       <meta charset="UTF-8">
-      <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource} ${codiconsUri}; script-src 'nonce-${nonce}'; img-src https: *.githubusercontent.com; font-src ${codiconsFontUri};">
+      <meta name="icons-uri" content="${iconsImagesUri}">
+      <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src ${webview.cspSource} ${codiconsUri}; script-src 'nonce-${nonce}'; img-src https://*.githubusercontent.com ${iconsImagesUri}; font-src ${codiconsFontUri};">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
       <link href="${mainCssUri}" rel="stylesheet" />
       <link href="${codiconsUri}" rel="stylesheet" />
 
       <script nonce="${nonce}" src="${momentUri}"></script>
+      <script nonce="${nonce}" src="${iconsUri}"></script>
     </head>
     <body>
       <div class="main"></div>

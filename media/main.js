@@ -93,7 +93,7 @@
     if (status.displayName) {
       nameSpan.innerHTML = `${status.displayName}(${status.username})`;
     } else {
-      nameSpan.innerHTML = status.username;
+      nameSpan.innerHTML = `@${status.username}`;
     }
 
     nameSpan.setAttribute("title", nameSpan.innerHTML);
@@ -136,8 +136,10 @@
       // If a language was detected, display the icon for that
       // otherwise we use a default fallback unknown language image
       // TODO: link icons to language identifiers
-      if (status.language) {
-        languageImg.src = status.profilePicUrl;
+      if (status.language && status.language in iconMap) {
+        languageImg.src =
+          document.getElementsByName("icons-uri")[0].getAttribute("content") +
+          iconMap[status.language];
         languageImg.setAttribute("title", status.language);
       } else {
         languageImg.src = status.profilePicUrl;
