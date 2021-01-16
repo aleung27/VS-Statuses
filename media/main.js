@@ -142,7 +142,10 @@
           iconMap[status.language];
         languageImg.setAttribute("title", status.language);
       } else {
-        languageImg.src = status.profilePicUrl;
+        languageImg.src =
+          document.getElementsByName("icons-uri")[0].getAttribute("content") +
+          "default_file.svg";
+        languageImg.setAttribute("title", status.language ?? "text");
       }
 
       fileSpan.innerHTML = status.filename;

@@ -133,14 +133,15 @@ body {
 
 .main .entry .info .file img,
 .main .entry .info .workspace img {
-  width: 1rem;
-  height: 1rem;
+  width: 16px;
+  height: 16px;
+  padding-right: 0.2rem;
 }
 
 .main .entry .info .file .codicon,
 .main .entry .info .workspace .codicon {
   padding-right: 0.2rem;
-  font-size: 12px;
+  font-size: 16px;
 }
 
 .main .entry .info .file span,
