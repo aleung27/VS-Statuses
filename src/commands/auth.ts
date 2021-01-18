@@ -24,6 +24,9 @@ const auth = async () => {
     await Util.context.globalState.update("refreshToken", res.refreshToken);
   } catch (err) {
     console.log(err);
+    await Util.context.globalState.update("accessToken", "");
+    await Util.context.globalState.update("refreshToken", "");
+
     window.showInformationMessage(
       "Error occured during authentication. Please try again."
     );

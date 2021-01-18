@@ -28,16 +28,8 @@ const update = async (): Promise<Status[]> => {
     customMessage: null, // TODO later
   };
 
-  // If not logged in, prompt the user to log in to use the extension
+  // If not logged in, return an empty list
   if (!Util.isLoggedIn()) {
-    const choice = await window.showInformationMessage(
-      "You need to be logged into Github to use this extension. Would you like to login?",
-      "Proceed",
-      "Cancel"
-    );
-    if (choice === "Proceed") {
-      auth();
-    }
     return [];
   }
 

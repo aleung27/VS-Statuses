@@ -6,6 +6,7 @@
   console.log("running...");
   const vscode = acquireVsCodeApi();
 
+  // Update the locale for custom display of relative time
   moment.updateLocale("en", {
     relativeTime: {
       s: "%ss",
@@ -25,24 +26,47 @@
     },
   });
 
+  // Get the last stauses we had stored in memory
   const oldState = vscode.getState() || { statuses: [] };
-
-  /** @type {Array<{ value: string }>} */
   let statuses = oldState.statuses;
-
-  updateStatuses(statuses);
 
   // Handle messages sent from the extension to the webview
   window.addEventListener("message", (event) => {
     const message = event.data; // The json data that the extension sent
     switch (message.command) {
       case "update": {
-        console.log("updating...");
-        updateStatuses(message.statuses);
+        /**
+         * The update command represents when the webview receives a message
+         * from the extension containing a list of new statuss (or nothing
+         * if getting the new statuses failed)
+         */
+        if (message.statuses.length) {
+          // Update the status with the latest one we got
+          updateStatuses(message.statuses);
+        } else {
+          // Use the last stored status that we have
+          updateStatuses(statuses);
+        }
         break;
       }
+      // case "auth": {
+      //   const main = document.querySelector(".main");
+      //   main.textContent = "";
+
+      //   const authButton = document.createElement("button");
+      //   authButton.onclick = () => auth();
+      //   authButton.className = "auth";
+      //   authButton.innerHTML = "Authenticate with Github";
+      //   main.appendChild(authButton);
+      //   break;
+      // }
     }
   });
+
+  // When first opening the webview we want to propogate it
+  if (statuses.length) {
+    updateStatuses(statuses);
+  }
 
   /**
    * @param {Array<{ value: string }>} statuses
@@ -174,5 +198,9 @@
     }
 
     return infoDiv;
+  }
+
+  function auth() {
+    vscode.postMessage({ command: "auth" });
   }
 })();

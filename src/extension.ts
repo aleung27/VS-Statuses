@@ -5,26 +5,42 @@ import update from "./commands/update";
 import Util from "./utilities/util";
 import StatusViewProvider from "./providers/StatusViewProvider";
 
-export function activate(context: ExtensionContext) {
-  Util.context = context;
-  let interval: NodeJS.Timeout | null = null;
-  const provider = new StatusViewProvider(context.extensionUri);
+let interval: NodeJS.Timeout | null = null; // The current update interval sesssion
+
+export async function activate(context: ExtensionContext) {
+  Util.context = context; // Set the context the extension operates in
+  const provider = new StatusViewProvider(context.extensionUri); // The Provider for the webview
 
   console.log("VS Statuses Activated!");
+  await auth();
+  if (Util.isLoggedIn()) {
+    commands.executeCommand("vs-statuses.update");
+  }
 
+  /**
+   * Register the webview view provider in order to display the sidebar
+   */
   let viewDisp = window.registerWebviewViewProvider(
     StatusViewProvider.viewType,
     provider
   );
 
+  /**
+   * Registers the command for propogating updates to the API and receiving a
+   * response consisting of the stauses of all the users followed
+   */
   let updateDisp = commands.registerCommand("vs-statuses.update", async () => {
     const wrapper = async () => {
       const data = await update();
       provider.view?.webview.postMessage({ command: "update", statuses: data });
     };
 
+    // If an interval already exists, something already propogates so we return
+    if (interval) {
+      return;
+    }
     wrapper();
-    interval = setInterval(wrapper, 60000);
+    interval = setInterval(wrapper, 60000); // Have the update func run automatically
   });
 
   let stopUpdate = commands.registerCommand("vs-statuses.stopUpdate", () => {
@@ -42,4 +58,8 @@ export function activate(context: ExtensionContext) {
 }
 
 // this method is called when your extension is deactivated
-export function deactivate() {}
+export function deactivate() {
+  if (interval) {
+    clearInterval(interval);
+  }
+}

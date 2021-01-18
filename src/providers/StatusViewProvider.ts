@@ -5,11 +5,13 @@ import {
   CancellationToken,
   Uri,
   Webview,
+  commands,
 } from "vscode";
 
 import Status from "../interfaces/Status";
 import getNonce from "../utilities/nonce";
 import { baseUrl } from "../utilities/api";
+import Util from "../utilities/util";
 
 export default class StatusViewProvider implements WebviewViewProvider {
   public static readonly viewType = "vs-statuses.view";
@@ -29,7 +31,26 @@ export default class StatusViewProvider implements WebviewViewProvider {
       localResourceRoots: [this._extensionUri],
     };
 
+    // this.view.webview.onDidReceiveMessage(
+    //   (message) => {
+    //     switch (message.command) {
+    //       case "auth":
+    //         console.log("Trying to authenticate...");
+    //         if (!Util.isLoggedIn()) {
+    //           commands.executeCommand("vs-statuses.auth");
+    //         }
+    //         return;
+    //     }
+    //   },
+    //   undefined,
+    //   Util.context.subscriptions
+    // );
+
     webviewView.webview.html = this.getWebviewHtml(webviewView.webview);
+
+    // if (!Util.isLoggedIn()) {
+    //   webviewView.webview.postMessage({ command: "auth" });
+    // }
   }
 
   private getWebviewHtml(webview: Webview) {
