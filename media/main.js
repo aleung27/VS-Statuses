@@ -26,10 +26,6 @@
     },
   });
 
-  // Get the last stauses we had stored in memory
-  const oldState = vscode.getState() || { statuses: [] };
-  let statuses = oldState.statuses;
-
   // Handle messages sent from the extension to the webview
   window.addEventListener("message", (event) => {
     const message = event.data; // The json data that the extension sent
@@ -40,12 +36,13 @@
          * from the extension containing a list of new statuss (or nothing
          * if getting the new statuses failed)
          */
-        if (message.statuses.length) {
+        if (message.statuses) {
           // Update the status with the latest one we got
           updateStatuses(message.statuses);
         } else {
           // Use the last stored status that we have
-          updateStatuses(statuses);
+          // TODO: what happens if its null (error out, not logged in etc.)
+          console.log("todo...");
         }
         break;
       }
@@ -62,11 +59,6 @@
       // }
     }
   });
-
-  // When first opening the webview we want to propogate it
-  if (statuses.length) {
-    updateStatuses(statuses);
-  }
 
   /**
    * @param {Array<{ value: string }>} statuses
@@ -86,9 +78,6 @@
       // Append the div to the main div
       div.appendChild(entryDiv);
     }
-
-    // Update the saved state
-    vscode.setState({ statuses: statuses });
   }
 
   function createProfile(status) {

@@ -32,7 +32,7 @@ export async function activate(context: ExtensionContext) {
   let updateDisp = commands.registerCommand("vs-statuses.update", async () => {
     const wrapper = async () => {
       const data = await update();
-      provider.view?.webview.postMessage({ command: "update", statuses: data });
+      provider.statuses = data; // Update the current statuses in the extension
     };
 
     // If an interval already exists, something already propogates so we return

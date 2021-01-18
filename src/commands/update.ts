@@ -12,7 +12,8 @@ import Status from "../interfaces/Status";
  * as receiving back an array of objects representing the activity of
  * all friends of the user who have an account. This is returned by the func
  */
-const update = async (): Promise<Status[]> => {
+const update = async (): Promise<Status[] | null> => {
+  console.log("updating");
   // Pull all the data for the current activity
   const activity: ActivityInterface = {
     timestamp: moment().unix(),
@@ -30,7 +31,7 @@ const update = async (): Promise<Status[]> => {
 
   // If not logged in, return an empty list
   if (!Util.isLoggedIn()) {
-    return [];
+    return null;
   }
 
   try {
@@ -59,7 +60,7 @@ const update = async (): Promise<Status[]> => {
     console.log(err);
   }
 
-  return [];
+  return null;
 };
 
 export default update;
