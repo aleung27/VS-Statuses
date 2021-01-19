@@ -120,21 +120,56 @@
     infoDiv.className = "info";
 
     // The name and time stamp
+    infoDiv.appendChild(
+      usernameTemplate(status.displayName, status.username, status.timestamp)
+    );
+
+    // Custom message
+    if (status.customMessage) {
+      infoDiv.appendChild(customMessageTemplate(status.customMessage));
+    }
+
+    // The file name and langugage icon
+    if (status.filename) {
+      infoDiv.appendChild(
+        fileTemplate(status.language, status.filename, iconMap)
+      );
+    }
+
+    // The workspace folder and icon
+    if (status.workspaceName) {
+      infoDiv.appendChild(workspaceTemplate(status.workspaceName));
+    }
+
+    return infoDiv;
+  }
+
+  /**
+   * Generates the html elements for the username/displayname and relative time
+   * @param {string | null} displayName The display name for the user
+   * @param {string} username The Github username for the user
+   * @param {number} timestamp The timestamp for the last status
+   * @returns {HTMLDivElement} The resultant div element containing the username + timestamp
+   */
+  function usernameTemplate(displayName, username, timestamp) {
     const nameDiv = document.createElement("div");
     nameDiv.className = "name";
     const nameSpan = document.createElement("span");
     nameSpan.className = "username";
 
-    if (status.displayName) {
-      nameSpan.innerHTML = `${status.displayName}(${status.username})`;
+    // Either show the display name and the username if both exist
+    // or just show the username
+    if (displayName) {
+      nameSpan.innerHTML = `${displayName}(@${username})`;
     } else {
-      nameSpan.innerHTML = `@${status.username}`;
+      nameSpan.innerHTML = `@${username}`;
     }
 
+    // Set the title and append to div
     nameSpan.setAttribute("title", nameSpan.innerHTML);
     nameDiv.appendChild(nameSpan);
 
-    if (moment().unix() - status.timestamp <= 90) {
+    if (moment().unix() - timestamp <= 90) {
       // We consider under around ~90secs to be still active and typing
       // Render the keyboard symbol instead of a time
 
@@ -142,67 +177,74 @@
       typingDot.className = "dot-typing";
       nameDiv.appendChild(typingDot);
     } else {
-      const timestamp = document.createElement("span");
-      timestamp.className = "timestamp";
-      timestamp.innerHTML = moment(moment.unix(status.timestamp)).fromNow(true);
-      nameDiv.appendChild(timestamp);
+      const timestampSpan = document.createElement("span");
+      timestampSpan.className = "timestamp";
+      timestampSpan.innerHTML = moment(moment.unix(timestamp)).fromNow(true);
+      nameDiv.appendChild(timestampSpan);
     }
 
-    infoDiv.appendChild(nameDiv);
-
-    // Custom message
-    if (status.customMessage) {
-      const customStatusDiv = document.createElement("div");
-      customStatusDiv.className = "custom-status";
-      customStatusDiv.innerHTML = status.customMessage;
-      customStatusDiv.setAttribute("title", status.customMessage);
-
-      infoDiv.appendChild(customStatusDiv);
-    }
-
-    // The file name and langugage icon
-    if (status.filename) {
-      const fileDiv = document.createElement("div");
-      fileDiv.className = "file";
-
-      const languageImg = document.createElement("img");
-      const fileSpan = document.createElement("span");
-
-      // If a language was detected, display the icon for that
-      // otherwise we use a default fallback unknown language image
-      if (status.language && status.language in iconMap) {
-        languageImg.src =
-          document.getElementsByName("icons-uri")[0].getAttribute("content") +
-          iconMap[status.language];
-        languageImg.setAttribute("title", status.language);
-      } else {
-        languageImg.src =
-          document.getElementsByName("icons-uri")[0].getAttribute("content") +
-          "default_file.svg";
-        languageImg.setAttribute("title", status.language ?? "text");
-      }
-
-      fileSpan.innerHTML = status.filename;
-      fileSpan.setAttribute("title", status.filename);
-      fileDiv.appendChild(languageImg);
-      fileDiv.appendChild(fileSpan);
-
-      infoDiv.appendChild(fileDiv);
-    }
-
-    // The workspace folder and icon
-    if (status.workspaceName) {
-      infoDiv.appendChild(getWorkspace(status.workspaceName));
-    }
-
-    return infoDiv;
+    return nameDiv;
   }
 
   /**
-   * @param {string} workspace The name of the workspace
-   * @return {HTMLDivElement} The resultant div element containing the workspace
+   * Generates the html elements for the custom message section of info
+   * @param {string} message The custom status message for a user
+   * @returns {HTMLDivElement} The resultant div element containing the custom status message
    */
-  function getWorkspace(workspace) {
+  function customMessageTemplate(message) {
+    const messageDiv = document.createElement("div");
+    messageDiv.className = "custom-status";
+    messageDiv.innerHTML = message;
+    messageDiv.setAttribute("title", message);
+
+    return messageDiv;
+  }
+
+  /**
+   * Generates the html elements for the filename + langauge section of info
+   * @param {string | null} language The language id associated with the file
+   * @param {string} filename The filename associated with the status
+   * @param {object} iconMap Object mapping language ids to static language icons
+   * @returns {HTMLDivElement} The resultant div element containing the filename + language
+   */
+  function fileTemplate(language, filename, iconMap) {
+    const fileDiv = document.createElement("div");
+    fileDiv.className = "file";
+
+    const languageImg = document.createElement("img");
+    const fileSpan = document.createElement("span");
+
+    // If a language was detected, display the icon for that
+    // otherwise we use a default fallback unknown language image
+    if (language && language in iconMap) {
+      languageImg.src =
+        document.getElementsByName("icons-uri")[0].getAttribute("content") +
+        iconMap[language];
+      languageImg.setAttribute("title", language);
+    } else {
+      languageImg.src =
+        document.getElementsByName("icons-uri")[0].getAttribute("content") +
+        "default_file.svg";
+      languageImg.setAttribute("title", language ?? "text");
+    }
+
+    // Set the filespan to contain to contain the filename
+    fileSpan.innerHTML = filename;
+    fileSpan.setAttribute("title", filename);
+
+    // Append the language and file to the overarching div
+    fileDiv.appendChild(languageImg);
+    fileDiv.appendChild(fileSpan);
+
+    return fileDiv;
+  }
+
+  /**
+   * Generates the html elements for the workspace portion of the info
+   * @param {string} workspace The name of the workspace
+   * @returns {HTMLDivElement} The resultant div element containing the workspace
+   */
+  function workspaceTemplate(workspace) {
     const workspaceDiv = document.createElement("div");
     workspaceDiv.className = "workspace";
 
