@@ -46,53 +46,75 @@
         }
         break;
       }
-      // case "auth": {
-      //   const main = document.querySelector(".main");
-      //   main.textContent = "";
+      case "auth": {
+        const main = document.querySelector(".main");
+        main.textContent = "";
 
-      //   const authButton = document.createElement("button");
-      //   authButton.onclick = () => auth();
-      //   authButton.className = "auth";
-      //   authButton.innerHTML = "Authenticate with Github";
-      //   main.appendChild(authButton);
-      //   break;
-      // }
+        const authButton = document.createElement("button");
+        authButton.onclick = () => auth();
+        authButton.className = "auth";
+        authButton.innerHTML = "Authenticate with Github";
+        main.appendChild(authButton);
+        break;
+      }
     }
   });
 
   /**
-   * @param {Array<{ value: string }>} statuses
+   * Generates the HTML for each of the statuses associated with the users.
+   * Each status contains a profile pic as well as the information on their
+   * activity rendered in the webview
+   * @param {Array<any>} statuses The array of statuses we want to render
    */
   function updateStatuses(statuses) {
+    // Clear the main content
     const div = document.querySelector(".main");
     div.textContent = "";
 
+    // For each element, generate the html divs and then combine them
+    // to make the overall entry for each status
     for (const status of statuses) {
-      // List element for each status we want to create
       const entryDiv = document.createElement("div");
       entryDiv.className = "entry";
 
       entryDiv.appendChild(createProfile(status));
       entryDiv.appendChild(statusInfo(status));
 
-      // Append the div to the main div
       div.appendChild(entryDiv);
     }
   }
 
+  /**
+   * Generates the profile pic for the user associated with the status
+   * @param {any} status The status of a user we want to render in thwe webview
+   * @return {HTMLDivElement} The resultant div element containing the profile
+   *
+   */
   function createProfile(status) {
     const profileDiv = document.createElement("div");
-    const img = document.createElement("img");
-
     profileDiv.className = "profile";
+
+    // Create the image for the profile picture
+    const img = document.createElement("img");
     img.className = "profile-img";
     img.src = status.profilePicUrl;
     img.alt = "Profile Picture";
 
+    // Attach the image to the div and return the profile
     profileDiv.appendChild(img);
     return profileDiv;
   }
 
+  /**
+   * Generates the div containing all the information for a status.
+   * This includes:
+   * - Username/Displayname with relative time difference
+   * - Custom status message from user
+   * - File name along with language id's corresponding symbol
+   * - Folder name along with folder codicon
+   * @param {*} status The status we want to render a div for
+   * @return {HTMLDivElement} The resultant div element containing the info
+   */
   function statusInfo(status) {
     const infoDiv = document.createElement("div");
     infoDiv.className = "info";
@@ -148,7 +170,6 @@
 
       // If a language was detected, display the icon for that
       // otherwise we use a default fallback unknown language image
-      // TODO: link icons to language identifiers
       if (status.language && status.language in iconMap) {
         languageImg.src =
           document.getElementsByName("icons-uri")[0].getAttribute("content") +
@@ -171,24 +192,41 @@
 
     // The workspace folder and icon
     if (status.workspaceName) {
-      const workspaceDiv = document.createElement("div");
-      workspaceDiv.className = "workspace";
-      const folderImg = document.createElement("i");
-      folderImg.className = "codicon codicon-folder";
-      const workspaceSpan = document.createElement("span");
-      workspaceSpan.innerHTML = status.workspaceName;
-      workspaceSpan.setAttribute("title", status.workspaceName);
-
-      // Append the <i> and the <span> to the workspace <div> before appending
-      // to the info <div> as a whole
-      workspaceDiv.appendChild(folderImg);
-      workspaceDiv.appendChild(workspaceSpan);
-      infoDiv.appendChild(workspaceDiv);
+      infoDiv.appendChild(getWorkspace(status.workspaceName));
     }
 
     return infoDiv;
   }
 
+  /**
+   * @param {string} workspace The name of the workspace
+   * @return {HTMLDivElement} The resultant div element containing the workspace
+   */
+  function getWorkspace(workspace) {
+    const workspaceDiv = document.createElement("div");
+    workspaceDiv.className = "workspace";
+
+    // Folder icon
+    const folderImg = document.createElement("i");
+    folderImg.className = "codicon codicon-folder";
+
+    // Span with workspace name
+    const workspaceSpan = document.createElement("span");
+    workspaceSpan.innerHTML = workspace;
+    workspaceSpan.setAttribute("title", workspace);
+
+    // Append the <i> and the <span> to the workspace <div> before appending
+    // to the info <div> as a whole
+    workspaceDiv.appendChild(folderImg);
+    workspaceDiv.appendChild(workspaceSpan);
+
+    return workspaceDiv;
+  }
+
+  /**
+   * Posts a message back to the extension indicating that the user needs
+   * authentication before they are able to use the extension
+   */
   function auth() {
     vscode.postMessage({ command: "auth" });
   }

@@ -12,6 +12,7 @@ import Status from "../interfaces/Status";
 import getNonce from "../utilities/nonce";
 import { baseUrl } from "../utilities/api";
 import Util from "../utilities/util";
+import auth from "../commands/auth";
 
 export default class StatusViewProvider implements WebviewViewProvider {
   public static readonly viewType = "vs-statuses.view";
@@ -64,40 +65,59 @@ export default class StatusViewProvider implements WebviewViewProvider {
      */
     webviewView.onDidChangeVisibility(
       () => {
-        webviewView.webview.postMessage({
-          command: "update",
-          statuses: this._statuses,
-        });
+        if (!Util.isLoggedIn()) {
+          webviewView.webview.postMessage({
+            command: "auth",
+          });
+        } else {
+          webviewView.webview.postMessage({
+            command: "update",
+            statuses: this._statuses,
+          });
+        }
       },
       undefined,
       Util.context.subscriptions
     );
 
-    // this.view.webview.onDidReceiveMessage(
-    //   (message) => {
-    //     switch (message.command) {
-    //       case "auth":
-    //         console.log("Trying to authenticate...");
-    //         if (!Util.isLoggedIn()) {
-    //           commands.executeCommand("vs-statuses.auth");
-    //         }
-    //         return;
-    //     }
-    //   },
-    //   undefined,
-    //   Util.context.subscriptions
-    // );
+    /**
+     * The listener function in the extension which awaits messages posted from
+     * the extension in order to invoke extension-side logic. Auth command
+     * exists here for when users try to view the webview without being logged
+     * in.
+     */
+    this.view.webview.onDidReceiveMessage(
+      async (message) => {
+        switch (message.command) {
+          case "auth":
+            // Try to authenticate and start updates if authentication was successful
+            await auth();
+
+            if (Util.isLoggedIn()) {
+              commands.executeCommand("vs-statuses.update");
+            }
+            break;
+        }
+      },
+      undefined,
+      Util.context.subscriptions
+    );
 
     // Propogate the webview content and post it the statuses we have held right now
     webviewView.webview.html = this.getWebviewHtml(webviewView.webview);
-    webviewView.webview.postMessage({
-      command: "update",
-      statuses: this._statuses,
-    });
 
-    // if (!Util.isLoggedIn()) {
-    //   webviewView.webview.postMessage({ command: "auth" });
-    // }
+    // On first rendering of the view, either propogate locally stored statuses
+    // or render the login button
+    if (!Util.isLoggedIn()) {
+      webviewView.webview.postMessage({
+        command: "auth",
+      });
+    } else {
+      webviewView.webview.postMessage({
+        command: "update",
+        statuses: this._statuses,
+      });
+    }
   }
 
   /**
