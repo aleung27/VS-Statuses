@@ -119,6 +119,24 @@ body {
   }
 }
 
+.auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-align: center;
+
+  .auth-text {
+    width: 100%;
+    padding-bottom: 1rem;
+  }
+
+  button {
+    width: 100%;
+    height: 2rem;
+  }
+}
+
 // Shout out to Zongbin https://codepen.io/nzbin/pen/GGrXbp
 @keyframes dotTyping {
   0% {

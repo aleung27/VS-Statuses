@@ -50,11 +50,7 @@
         const main = document.querySelector(".main");
         main.textContent = "";
 
-        const authButton = document.createElement("button");
-        authButton.onclick = () => auth();
-        authButton.className = "auth";
-        authButton.innerHTML = "Authenticate with Github";
-        main.appendChild(authButton);
+        main.appendChild(authTemplate());
         break;
       }
     }
@@ -263,6 +259,25 @@
     workspaceDiv.appendChild(workspaceSpan);
 
     return workspaceDiv;
+  }
+
+  function authTemplate() {
+    const div = document.createElement("div");
+    div.className = "auth";
+
+    const explanationText = document.createElement("div");
+    explanationText.className = "auth-text";
+    explanationText.innerHTML =
+      "This extension requires access to Github to work. Please authenticate to continue.";
+
+    const authButton = document.createElement("button");
+    authButton.onclick = () => auth();
+    authButton.innerHTML = "Authenticate with Github";
+
+    div.appendChild(explanationText);
+    div.appendChild(authButton);
+
+    return div;
   }
 
   /**

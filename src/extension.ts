@@ -6,7 +6,13 @@ import Util from "./utilities/util";
 import StatusViewProvider from "./providers/StatusViewProvider";
 
 let interval: NodeJS.Timeout | null = null; // The current update interval sesssion
-//TODO: authentication.ondidchangesession?
+//TODO: authentication.ondidchangesession -> login/logout button?
+//TODO: overlap between time and username
+//TODO: footer for webview?
+//TODO: hiding folder file names
+//TODO: custom status message
+//TODO: message when no following hinting at following people
+//TODO: theming for colors
 export async function activate(context: ExtensionContext) {
   Util.context = context; // Set the context the extension operates in
   const provider = new StatusViewProvider(context.extensionUri); // The Provider for the webview
