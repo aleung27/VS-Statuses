@@ -3,9 +3,41 @@ $first-dot: 9976px;
 $second-dot: 9986px;
 $third-dot: 9996px;
 
+html {
+  height: 100%;
+}
+
+footer {
+  position: fixed;
+  text-align: center;
+  width: 100%;
+  z-index: 2;
+  background-color: var(--vscode-sideBar-background);
+  box-shadow: 0 -2px 5px var(--vscode-sideBar-background);
+  left: 0px;
+  bottom: 0px;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-size: smaller;
+    align-items: center;
+
+    i {
+      padding-right: 0.2rem;
+    }
+
+    a {
+      color: var(--vscode-editor-foreground);
+    }
+  }
+}
+
 body {
   padding: 0 0 0 10px;
   overflow-x: hidden;
+  height: 100%;
 }
 
 .main {
@@ -21,6 +53,13 @@ body {
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid var(--vscode-editor-background);
+
+    &.last-entry {
+      padding-bottom: 3rem;
+      border-bottom: none;
+    }
 
     .profile {
       min-width: 50px;

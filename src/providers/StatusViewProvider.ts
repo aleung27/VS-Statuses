@@ -179,7 +179,16 @@ export default class StatusViewProvider implements WebviewViewProvider {
       <script nonce="${nonce}" src="${iconsUri}"></script>
     </head>
     <body>
-      <div class="main"></div>
+      <div id="main" class="main"></div>
+      <footer>
+        <small>VS Statuses</small>
+        <br/>
+        <small>Copyright &copy; 2020 Adam Leung</small>
+        <div>
+          <i class="codicon codicon-github-inverted"></i>
+          <a href="https://github.com/aleung27/VS-Statuses">aleung27/VS-Statuses</a>
+        </div>
+      </footer>
       <script nonce="${nonce}" src="${scriptUri}"></script>
     </body>
     </html>`;

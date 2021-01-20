@@ -78,6 +78,14 @@
 
       div.appendChild(entryDiv);
     }
+
+    // Find the last entry in our list and give it some extra padding
+    let children = document.getElementById("main").childNodes;
+    let lastNode = children[children.length - 1];
+
+    if (lastNode && lastNode.className === "entry") {
+      lastNode.className += " last-entry";
+    }
   }
 
   /**
