@@ -40,6 +40,11 @@ body {
   height: 100%;
 }
 
+button {
+  width: 100%;
+  height: 2rem;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -169,11 +174,10 @@ body {
     width: 100%;
     padding-bottom: 1rem;
   }
+}
 
-  button {
-    width: 100%;
-    height: 2rem;
-  }
+.no-statuses {
+  text-align: center;
 }
 
 // Shout out to Zongbin https://codepen.io/nzbin/pen/GGrXbp

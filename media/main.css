@@ -45,6 +45,11 @@ body {
   height: 100%;
 }
 
+button {
+  width: 100%;
+  height: 2rem;
+}
+
 .main {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -230,9 +235,8 @@ body {
   padding-bottom: 1rem;
 }
 
-.auth button {
-  width: 100%;
-  height: 2rem;
+.no-statuses {
+  text-align: center;
 }
 
 @-webkit-keyframes dotTyping {

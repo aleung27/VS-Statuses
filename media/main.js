@@ -67,24 +67,29 @@
     const div = document.querySelector(".main");
     div.textContent = "";
 
-    // For each element, generate the html divs and then combine them
-    // to make the overall entry for each status
-    for (const status of statuses) {
-      const entryDiv = document.createElement("div");
-      entryDiv.className = "entry";
+    if (statuses.length) {
+      // For each element, generate the html divs and then combine them
+      // to make the overall entry for each status
+      for (const status of statuses) {
+        const entryDiv = document.createElement("div");
+        entryDiv.className = "entry";
 
-      entryDiv.appendChild(createProfile(status));
-      entryDiv.appendChild(statusInfo(status));
+        entryDiv.appendChild(createProfile(status));
+        entryDiv.appendChild(statusInfo(status));
 
-      div.appendChild(entryDiv);
-    }
+        div.appendChild(entryDiv);
+      }
 
-    // Find the last entry in our list and give it some extra padding
-    let children = document.getElementById("main").childNodes;
-    let lastNode = children[children.length - 1];
+      // Find the last entry in our list and give it some extra padding
+      let children = document.getElementById("main").childNodes;
+      let lastNode = children[children.length - 1];
 
-    if (lastNode && lastNode.className === "entry") {
-      lastNode.className += " last-entry";
+      if (lastNode && lastNode.className === "entry") {
+        lastNode.className += " last-entry";
+      }
+    } else {
+      // When the user isn't following anyone
+      div.appendChild(noStatusesTemplate());
     }
   }
 
@@ -269,6 +274,10 @@
     return workspaceDiv;
   }
 
+  /**
+   * Generates the html elements for the auth button and text
+   * @returns {HTMLDivElement} The resultant div element containing the auth button
+   */
   function authTemplate() {
     const div = document.createElement("div");
     div.className = "auth";
@@ -284,6 +293,35 @@
 
     div.appendChild(explanationText);
     div.appendChild(authButton);
+
+    return div;
+  }
+
+  /**
+   * Generates the html template for the no statuses message
+   * @returns {HTMLDivElement} The resultant div element containing the no statuses infor
+   */
+  function noStatusesTemplate() {
+    const div = document.createElement("div");
+    div.className = "no-statuses";
+
+    const p1 = document.createElement("p");
+    p1.innerHTML =
+      "No statuses to show. Invite your friends to download VS Statuses to see each others activity!";
+
+    const p2 = document.createElement("p");
+    p2.innerHTML = "Follow me on Github to see what statuses look like.";
+
+    const a = document.createElement("a");
+    a.href = "https://github.com/aleung27";
+    const button = document.createElement("button");
+    button.type = "button";
+    button.innerHTML = "Follow on Github";
+    a.appendChild(button);
+
+    div.appendChild(p1);
+    div.appendChild(p2);
+    div.appendChild(a);
 
     return div;
   }
