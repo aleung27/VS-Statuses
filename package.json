@@ -1,106 +1,200 @@
 {
-	"name": "vs-statuses",
-	"displayName": "VS Statuses",
-	"description": "",
-	"version": "0.0.1",
-	"engines": {
-		"vscode": "^1.52.0"
-	},
-	"categories": [
-		"Other"
-	],
-	"activationEvents": [
-		"*"
-	],
-	"main": "./out/extension.js",
-	"contributes": {
-		"commands": [
-			{
-				"command": "vs-statuses.update",
-				"title": "Send updates",
-				"category": "VS Statuses"
-			},
-			{
-				"command": "vs-statuses.stopUpdate",
-				"title": "Stop updates",
-				"category": "VS Statuses"
-			},
+  "name": "vs-statuses",
+  "displayName": "VS Statuses",
+  "description": "",
+  "version": "0.0.1",
+  "engines": {
+    "vscode": "^1.52.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "main": "./out/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "vs-statuses.update",
+        "title": "Send updates",
+        "category": "VS Statuses"
+      },
+      {
+        "command": "vs-statuses.stopUpdate",
+        "title": "Stop updates",
+        "category": "VS Statuses"
+      },
+      {
+        "command": "vs-statuses.auth",
+        "title": "Authenticate with Github",
+        "category": "VS Statuses"
+	  },
+      {
+        "command": "vs-statuses.configWorkspaceOn",
+        "title": "Hide your Workspace Name in Status Updates",
+        "category": "VS Statuses - Settings"
+	  },
+      {
+        "command": "vs-statuses.configWorkspaceOff",
+        "title": "Show your Workspace Name in Status Updates",
+        "category": "VS Statuses - Settings"
+	  },
+      {
+        "command": "vs-statuses.configFilenameOn",
+        "title": "Hide your File Name in Status Updates",
+        "category": "VS Statuses - Settings"
+	  },
+      {
+        "command": "vs-statuses.configFilenameOff",
+        "title": "Show your File Name in Status Updates",
+        "category": "VS Statuses - Settings"
+	  },
+      {
+        "command": "vs-statuses.configGhostOn",
+        "title": "Turn on Ghost Mode",
+        "category": "VS Statuses - Settings"
+	  },
+      {
+        "command": "vs-statuses.configGhostOff",
+        "title": "Turn off Ghost Mode",
+        "category": "VS Statuses - Settings"
+	  }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "vs-statuses",
+          "title": "VS Statuses",
+          "icon": "media/placeholder.svg"
+        }
+      ]
+    },
+    "views": {
+      "vs-statuses": [
+        {
+          "type": "webview",
+          "id": "vs-statuses.view",
+          "name": "VS Statuses",
+          "icon": "media/dep.svg"
+        }
+      ]
+    },
+    "configuration": [
+      {
+        "title": "VS Statuses",
+        "properties": {
+          "vs-statuses.hideWorkspaceName": {
+            "type": "boolean",
+            "default": false,
+            "description": "Hide your workspace name from your status."
+          },
+          "vs-statuses.hideFileAndLanguageName": {
+            "type": "boolean",
+            "default": false,
+            "description": "Hide your file name and language from your status."
+          },
+          "vs-statuses.ghostMode": {
+            "type": "boolean",
+            "default": false,
+            "description": "Appear offline and stop status updates. New updates from friends will not appear for you."
+          }
+        }
+      }
+    ], "menus": {
+		"view/title": [
 			{
 				"command": "vs-statuses.auth",
-				"title": "Authenticate with Github",
-				"category": "VS Statuses"
+				"when": "view == vs-statuses.view",
+				"group": "auth"
+			},
+			{
+				"command": "vs-statuses.configWorkspaceOn",
+				"when": "view == vs-statuses.view && !config.vs-statuses.hideWorkspaceName",
+				"group": "settings"
+			},
+			{
+				"command": "vs-statuses.configWorkspaceOff",
+				"when": "view == vs-statuses.view && config.vs-statuses.hideWorkspaceName",
+				"group": "settings"
+			},
+			{
+				"command": "vs-statuses.configFilenameOn",
+				"when": "view == vs-statuses.view && !config.vs-statuses.hideFileAndLanguageName",
+				"group": "settings"
+			},
+			{
+				"command": "vs-statuses.configFilenameOff",
+				"when": "view == vs-statuses.view && config.vs-statuses.hideFileAndLanguageName",
+				"group": "settings"
+			},
+			{
+				"command": "vs-statuses.configGhostOn",
+				"when": "view == vs-statuses.view && !config.vs-statuses.ghostMode",
+				"group": "settings"
+			},
+			{
+				"command": "vs-statuses.configGhostOff",
+				"when": "view == vs-statuses.view && config.vs-statuses.ghostMode",
+				"group": "settings"
 			}
 		],
-		"viewsContainers": {
-			"activitybar": [
-				{
-					"id": "vs-statuses",
-					"title": "VS Statuses",
-					"icon": "media/placeholder.svg"
-				}
-			]
-		},
-		"views": {
-			"vs-statuses": [
-				{
-					"type": "webview",
-					"id": "vs-statuses.view",
-					"name": "VS Statuses",
-					"icon": "media/dep.svg"
-				}
-			]
-		},
-		"configuration": [
+		"commandPalette": [
 			{
-				"title": "VS Statuses",
-				"properties": {
-					"vs-statuses.hideWorkspaceName": {
-						"type": "boolean",
-						"default": false,
-						"description": "Hide your workspace name from your status."
-					},
-					"vs-statuses.hideFileAndLanguageName": {
-						"type": "boolean",
-						"default": false,
-						"description": "Hide your file name and language from your status."
-					},
-					"vs-statuses.ghostMode": {
-						"type": "boolean",
-						"default": false,
-						"description": "Appear offline and stop status updates. New updates from friends will not appear for you."
-					}
-				}
+				"command": "vs-statuses.configWorkspaceOn",
+				"when": "false"
+			},
+			{
+				"command": "vs-statuses.configWorkspaceOff",
+				"when": "false"
+			},
+			{
+				"command": "vs-statuses.configFilenameOn",
+				"when": "false"
+			},
+			{
+				"command": "vs-statuses.configFilenameOff",
+				"when": "false"
+			},
+			{
+				"command": "vs-statuses.configGhostOn",
+				"when": "false"
+			},
+			{
+				"command": "vs-statuses.configGhostOff",
+				"when": "false"
 			}
 		]
-	},
-	"scripts": {
-		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
-		"watch": "tsc -watch -p ./",
-		"pretest": "npm run compile && npm run lint",
-		"lint": "eslint src --ext ts",
-		"test": "node ./out/test/runTest.js"
-	},
-	"devDependencies": {
-		"@types/glob": "^7.1.3",
-		"@types/mocha": "^8.0.4",
-		"@types/node": "^12.19.11",
-		"@types/vscode": "^1.52.0",
-		"@typescript-eslint/eslint-plugin": "^4.9.0",
-		"@typescript-eslint/parser": "^4.9.0",
-		"eslint": "^7.15.0",
-		"glob": "^7.1.6",
-		"mocha": "^8.1.3",
-		"typescript": "^4.1.2",
-		"vscode-test": "^1.4.1"
-	},
-	"dependencies": {
-		"@types/moment": "^2.13.0",
-		"axios": "^0.21.1",
-		"https": "^1.0.0",
-		"jsdoc": "^3.6.6",
-		"moment": "^2.29.1",
-		"scss": "^0.2.4",
-		"vscode-codicons": "0.0.13"
 	}
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "node ./out/test/runTest.js"
+  },
+  "devDependencies": {
+    "@types/glob": "^7.1.3",
+    "@types/mocha": "^8.0.4",
+    "@types/node": "^12.19.11",
+    "@types/vscode": "^1.52.0",
+    "@typescript-eslint/eslint-plugin": "^4.9.0",
+    "@typescript-eslint/parser": "^4.9.0",
+    "eslint": "^7.15.0",
+    "glob": "^7.1.6",
+    "mocha": "^8.1.3",
+    "typescript": "^4.1.2",
+    "vscode-test": "^1.4.1"
+  },
+  "dependencies": {
+    "@types/moment": "^2.13.0",
+    "axios": "^0.21.1",
+    "https": "^1.0.0",
+    "jsdoc": "^3.6.6",
+    "moment": "^2.29.1",
+    "scss": "^0.2.4",
+    "vscode-codicons": "0.0.13"
+  }
 }
