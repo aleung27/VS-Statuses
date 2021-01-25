@@ -11,6 +11,7 @@ let interval: NodeJS.Timeout | null = null; // The current update interval sesss
 //TODO: hiding folder file names
 //TODO: custom status message
 //TODO: theming for colors
+//TODO: new icon for extension
 export async function activate(context: ExtensionContext) {
   Util.context = context; // Set the context the extension operates in
   const provider = new StatusViewProvider(context.extensionUri); // The Provider for the webview

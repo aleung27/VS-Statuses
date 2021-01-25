@@ -14,22 +14,35 @@ import Status from "../interfaces/Status";
  */
 const update = async (): Promise<Status[] | null> => {
   console.log("updating");
+  const configOptions = workspace.getConfiguration("vs-statuses");
+
+  // Stop status updates for the user
+  if (configOptions.get<boolean>("ghostMode")) {
+    return null;
+  }
+
   // Pull all the data for the current activity
   const activity: ActivityInterface = {
     timestamp: moment().unix(),
-    language: window.activeTextEditor
-      ? window.activeTextEditor.document.languageId
-      : null,
-    filename: window.activeTextEditor
-      ? basename(window.activeTextEditor.document.fileName)
-      : null,
-    workspaceName: workspace.workspaceFolders
-      ? workspace.workspaceFolders[0].name
-      : null,
+    language:
+      window.activeTextEditor &&
+      !configOptions.get<boolean>("hideFileAndLanguageName")
+        ? window.activeTextEditor.document.languageId
+        : null,
+    filename:
+      window.activeTextEditor &&
+      !configOptions.get<boolean>("hideFileAndLanguageName")
+        ? basename(window.activeTextEditor.document.fileName)
+        : null,
+    workspaceName:
+      workspace.workspaceFolders &&
+      !configOptions.get<boolean>("hideWorkspaceName")
+        ? workspace.workspaceFolders[0].name
+        : null,
     customMessage: null, // TODO later
   };
 
-  // If not logged in, return an empty list
+  // Not logged in so we return null
   if (!Util.isLoggedIn()) {
     return null;
   }

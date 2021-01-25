@@ -49,7 +49,29 @@
 					"icon": "media/dep.svg"
 				}
 			]
-		}
+		},
+		"configuration": [
+			{
+				"title": "VS Statuses",
+				"properties": {
+					"vs-statuses.hideWorkspaceName": {
+						"type": "boolean",
+						"default": false,
+						"description": "Hide your workspace name from your status."
+					},
+					"vs-statuses.hideFileAndLanguageName": {
+						"type": "boolean",
+						"default": false,
+						"description": "Hide your file name and language from your status."
+					},
+					"vs-statuses.ghostMode": {
+						"type": "boolean",
+						"default": false,
+						"description": "Appear offline and stop status updates. New updates from friends will not appear for you."
+					}
+				}
+			}
+		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
