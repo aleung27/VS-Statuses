@@ -111,32 +111,32 @@
 			{
 				"command": "vs-statuses.configWorkspaceOn",
 				"when": "view == vs-statuses.view && !config.vs-statuses.hideWorkspaceName",
-				"group": "settings"
+				"group": "settings@3"
 			},
 			{
 				"command": "vs-statuses.configWorkspaceOff",
 				"when": "view == vs-statuses.view && config.vs-statuses.hideWorkspaceName",
-				"group": "settings"
+				"group": "settings@3"
 			},
 			{
 				"command": "vs-statuses.configFilenameOn",
 				"when": "view == vs-statuses.view && !config.vs-statuses.hideFileAndLanguageName",
-				"group": "settings"
+				"group": "settings@2"
 			},
 			{
 				"command": "vs-statuses.configFilenameOff",
 				"when": "view == vs-statuses.view && config.vs-statuses.hideFileAndLanguageName",
-				"group": "settings"
+				"group": "settings@2"
 			},
 			{
 				"command": "vs-statuses.configGhostOn",
 				"when": "view == vs-statuses.view && !config.vs-statuses.ghostMode",
-				"group": "settings"
+				"group": "settings@1"
 			},
 			{
 				"command": "vs-statuses.configGhostOff",
 				"when": "view == vs-statuses.view && config.vs-statuses.ghostMode",
-				"group": "settings"
+				"group": "settings@1"
 			}
 		],
 		"commandPalette": [

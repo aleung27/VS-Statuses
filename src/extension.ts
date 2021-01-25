@@ -4,11 +4,11 @@ import auth from "./commands/auth";
 import update from "./commands/update";
 import Util from "./utilities/util";
 import StatusViewProvider from "./providers/StatusViewProvider";
+import { Setting, toggleSetting } from "./utilities/settings";
 
 let interval: NodeJS.Timeout | null = null; // The current update interval sesssion
 //TODO: authentication.ondidchangesession -> login/logout button?
 //TODO: overlap between time and username
-//TODO: hiding folder file names
 //TODO: custom status message
 //TODO: theming for colors
 //TODO: new icon for extension
@@ -59,7 +59,50 @@ export async function activate(context: ExtensionContext) {
     async () => await auth()
   );
 
-  context.subscriptions.push(updateDisp, stopUpdate, authDisp, viewDisp);
+  /* ~~~~~~~~~~~~~~~~~~~~~~~~~~Setting Commands~~~~~~~~~~~~~~~~~~~~~~~~~~ */
+
+  const configWorkspaceOnDisp = commands.registerCommand(
+    "vs-statuses.configWorkspaceOn",
+    async () => await toggleSetting(Setting.workspace, true)
+  );
+
+  const configWorkspaceOffDisp = commands.registerCommand(
+    "vs-statuses.configWorkspaceOff",
+    async () => await toggleSetting(Setting.workspace, false)
+  );
+
+  const configFilenameOnDisp = commands.registerCommand(
+    "vs-statuses.configFilenameOn",
+    async () => await toggleSetting(Setting.filename, true)
+  );
+
+  const configFilenameOffDisp = commands.registerCommand(
+    "vs-statuses.configFilenameOff",
+    async () => await toggleSetting(Setting.filename, false)
+  );
+
+  const configGhostOnDisp = commands.registerCommand(
+    "vs-statuses.configGhostOn",
+    async () => await toggleSetting(Setting.ghost, true)
+  );
+
+  const configGhostOffDisp = commands.registerCommand(
+    "vs-statuses.configGhostOff",
+    async () => await toggleSetting(Setting.ghost, false)
+  );
+
+  context.subscriptions.push(
+    updateDisp,
+    stopUpdate,
+    authDisp,
+    viewDisp,
+    configWorkspaceOnDisp,
+    configWorkspaceOffDisp,
+    configFilenameOnDisp,
+    configFilenameOffDisp,
+    configGhostOnDisp,
+    configGhostOffDisp
+  );
 }
 
 // this method is called when your extension is deactivated
