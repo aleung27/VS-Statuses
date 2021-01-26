@@ -16,8 +16,8 @@ const update = async (): Promise<Status[] | null> => {
   console.log("updating");
   const configOptions = workspace.getConfiguration("vs-statuses");
 
-  // Stop status updates for the user
-  if (configOptions.get<boolean>("ghostMode")) {
+  // Stop status updates for the user if in ghost mode or if they're not logged in
+  if (configOptions.get<boolean>("ghostMode") || !Util.isLoggedIn()) {
     return null;
   }
 
@@ -41,11 +41,6 @@ const update = async (): Promise<Status[] | null> => {
         : null,
     customMessage: null, // TODO later
   };
-
-  // Not logged in so we return null
-  if (!Util.isLoggedIn()) {
-    return null;
-  }
 
   try {
     // Send the activity to the API, attaching tokens to the header

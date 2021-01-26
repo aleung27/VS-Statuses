@@ -7,7 +7,6 @@ import StatusViewProvider from "./providers/StatusViewProvider";
 import { Setting, toggleSetting } from "./utilities/settings";
 
 let interval: NodeJS.Timeout | null = null; // The current update interval sesssion
-//TODO: authentication.ondidchangesession -> login/logout button?
 //TODO: custom status message
 //TODO: theming for colors
 //TODO: new icon for extension

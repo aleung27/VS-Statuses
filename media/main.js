@@ -40,9 +40,9 @@
           // Update the status with the latest one we got
           updateStatuses(message.statuses);
         } else {
-          // Use the last stored status that we have
-          // TODO: what happens if its null (error out, not logged in etc.)
-          console.log("todo...");
+          // If status hasn't changed since the constructor e.g. startup on ghost mode
+          document.querySelector(".main").innerHTML =
+            "Nothing to show here (are you on ghost mode?)";
         }
         break;
       }

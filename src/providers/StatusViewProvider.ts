@@ -35,7 +35,11 @@ export default class StatusViewProvider implements WebviewViewProvider {
    * is also open, we send a message to the webview with the new statuses
    */
   public set statuses(statuses: Status[] | null) {
-    this._statuses = statuses;
+    // Only update if not null otherwise keep old statuses
+    if (statuses) {
+      this._statuses = statuses;
+    }
+
     this.view?.webview.postMessage({
       command: "update",
       statuses: this._statuses,
