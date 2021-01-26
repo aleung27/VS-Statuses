@@ -29,37 +29,37 @@
         "command": "vs-statuses.auth",
         "title": "Authenticate with Github",
         "category": "VS Statuses"
-	  },
+      },
       {
         "command": "vs-statuses.configWorkspaceOn",
         "title": "Hide your Workspace Name in Status Updates",
         "category": "VS Statuses - Settings"
-	  },
+      },
       {
         "command": "vs-statuses.configWorkspaceOff",
         "title": "Show your Workspace Name in Status Updates",
         "category": "VS Statuses - Settings"
-	  },
+      },
       {
         "command": "vs-statuses.configFilenameOn",
         "title": "Hide your File Name in Status Updates",
         "category": "VS Statuses - Settings"
-	  },
+      },
       {
         "command": "vs-statuses.configFilenameOff",
         "title": "Show your File Name in Status Updates",
         "category": "VS Statuses - Settings"
-	  },
+      },
       {
         "command": "vs-statuses.configGhostOn",
         "title": "Turn on Ghost Mode",
         "category": "VS Statuses - Settings"
-	  },
+      },
       {
         "command": "vs-statuses.configGhostOff",
         "title": "Turn off Ghost Mode",
         "category": "VS Statuses - Settings"
-	  }
+      }
     ],
     "viewsContainers": {
       "activitybar": [
@@ -101,71 +101,72 @@
           }
         }
       }
-    ], "menus": {
-		"view/title": [
-			{
-				"command": "vs-statuses.auth",
-				"when": "view == vs-statuses.view",
-				"group": "auth"
-			},
-			{
-				"command": "vs-statuses.configWorkspaceOn",
-				"when": "view == vs-statuses.view && !config.vs-statuses.hideWorkspaceName",
-				"group": "settings@3"
-			},
-			{
-				"command": "vs-statuses.configWorkspaceOff",
-				"when": "view == vs-statuses.view && config.vs-statuses.hideWorkspaceName",
-				"group": "settings@3"
-			},
-			{
-				"command": "vs-statuses.configFilenameOn",
-				"when": "view == vs-statuses.view && !config.vs-statuses.hideFileAndLanguageName",
-				"group": "settings@2"
-			},
-			{
-				"command": "vs-statuses.configFilenameOff",
-				"when": "view == vs-statuses.view && config.vs-statuses.hideFileAndLanguageName",
-				"group": "settings@2"
-			},
-			{
-				"command": "vs-statuses.configGhostOn",
-				"when": "view == vs-statuses.view && !config.vs-statuses.ghostMode",
-				"group": "settings@1"
-			},
-			{
-				"command": "vs-statuses.configGhostOff",
-				"when": "view == vs-statuses.view && config.vs-statuses.ghostMode",
-				"group": "settings@1"
-			}
-		],
-		"commandPalette": [
-			{
-				"command": "vs-statuses.configWorkspaceOn",
-				"when": "false"
-			},
-			{
-				"command": "vs-statuses.configWorkspaceOff",
-				"when": "false"
-			},
-			{
-				"command": "vs-statuses.configFilenameOn",
-				"when": "false"
-			},
-			{
-				"command": "vs-statuses.configFilenameOff",
-				"when": "false"
-			},
-			{
-				"command": "vs-statuses.configGhostOn",
-				"when": "false"
-			},
-			{
-				"command": "vs-statuses.configGhostOff",
-				"when": "false"
-			}
-		]
-	}
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "vs-statuses.auth",
+          "when": "view == vs-statuses.view",
+          "group": "auth"
+        },
+        {
+          "command": "vs-statuses.configWorkspaceOn",
+          "when": "view == vs-statuses.view && !config.vs-statuses.hideWorkspaceName",
+          "group": "settings@3"
+        },
+        {
+          "command": "vs-statuses.configWorkspaceOff",
+          "when": "view == vs-statuses.view && config.vs-statuses.hideWorkspaceName",
+          "group": "settings@3"
+        },
+        {
+          "command": "vs-statuses.configFilenameOn",
+          "when": "view == vs-statuses.view && !config.vs-statuses.hideFileAndLanguageName",
+          "group": "settings@2"
+        },
+        {
+          "command": "vs-statuses.configFilenameOff",
+          "when": "view == vs-statuses.view && config.vs-statuses.hideFileAndLanguageName",
+          "group": "settings@2"
+        },
+        {
+          "command": "vs-statuses.configGhostOn",
+          "when": "view == vs-statuses.view && !config.vs-statuses.ghostMode",
+          "group": "settings@1"
+        },
+        {
+          "command": "vs-statuses.configGhostOff",
+          "when": "view == vs-statuses.view && config.vs-statuses.ghostMode",
+          "group": "settings@1"
+        }
+      ],
+      "commandPalette": [
+        {
+          "command": "vs-statuses.configWorkspaceOn",
+          "when": "false"
+        },
+        {
+          "command": "vs-statuses.configWorkspaceOff",
+          "when": "false"
+        },
+        {
+          "command": "vs-statuses.configFilenameOn",
+          "when": "false"
+        },
+        {
+          "command": "vs-statuses.configFilenameOff",
+          "when": "false"
+        },
+        {
+          "command": "vs-statuses.configGhostOn",
+          "when": "false"
+        },
+        {
+          "command": "vs-statuses.configGhostOff",
+          "when": "false"
+        }
+      ]
+    }
   },
   "scripts": {
     "vscode:prepublish": "npm run compile",
