@@ -89,14 +89,12 @@ button {
         flex-direction: row;
         justify-content: space-between;
         align-items: center;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
 
         .dot-typing {
           position: relative;
           left: -9999px;
           top: 0px;
+          min-width: 6px;
           width: 6px;
           height: 6px;
           border-radius: 5px;
@@ -108,11 +106,21 @@ button {
 
         .timestamp {
           padding-right: 5px;
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
         }
 
-        .username:hover {
-          cursor: pointer;
-          text-decoration: underline;
+        .username {
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          padding-right: 0.5rem;
+          &:hover {
+            cursor: pointer;
+            text-decoration: underline;
+          }
         }
       }
 

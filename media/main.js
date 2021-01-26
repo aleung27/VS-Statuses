@@ -169,7 +169,7 @@
     // Either show the display name and the username if both exist
     // or just show the username
     if (displayName) {
-      nameSpan.innerHTML = `${displayName}(@${username})`;
+      nameSpan.innerHTML = `${displayName} (@${username})`;
     } else {
       nameSpan.innerHTML = `@${username}`;
     }
@@ -185,10 +185,12 @@
       const typingDot = document.createElement("div");
       typingDot.className = "dot-typing";
       nameDiv.appendChild(typingDot);
+      nameSpan.style.setProperty("padding-right", "1.5rem");
     } else {
       const timestampSpan = document.createElement("span");
       timestampSpan.className = "timestamp";
       timestampSpan.innerHTML = moment(moment.unix(timestamp)).fromNow(true);
+      timestampSpan.setAttribute("title", timestampSpan.innerHTML);
       nameDiv.appendChild(timestampSpan);
     }
 
