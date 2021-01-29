@@ -31,6 +31,11 @@
         "category": "VS Statuses"
       },
       {
+        "command": "vs-statuses.setMessage",
+        "title": "Set your Custom Status Message",
+        "category": "VS Statuses"
+      },
+      {
         "command": "vs-statuses.configWorkspaceOn",
         "title": "Hide your Workspace Name in Status Updates",
         "category": "VS Statuses - Settings"

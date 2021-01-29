@@ -1,19 +1,26 @@
-import { commands, ExtensionContext, window, authentication } from "vscode";
+import {
+  commands,
+  ExtensionContext,
+  window,
+  authentication,
+  StatusBarAlignment,
+} from "vscode";
 
 import auth from "./commands/auth";
 import update from "./commands/update";
 import Util from "./utilities/util";
 import StatusViewProvider from "./providers/StatusViewProvider";
 import { Setting, toggleSetting } from "./utilities/settings";
+import setMessage from "./commands/setMessage";
 
 let interval: NodeJS.Timeout | null = null; // The current update interval sesssion
-//TODO: custom status message
 //TODO: theming for colors
 //TODO: new icon for extension
 //TODO: devops
 export async function activate(context: ExtensionContext) {
   Util.context = context; // Set the context the extension operates in
   const provider = new StatusViewProvider(context.extensionUri); // The Provider for the webview
+  const statusBarCommand = "vs-statuses.setMessage";
 
   console.log("VS Statuses Activated!");
   await auth();
@@ -28,6 +35,18 @@ export async function activate(context: ExtensionContext) {
     StatusViewProvider.viewType,
     provider
   );
+
+  /**
+   * Register the status bar item for editing status messages
+   */
+  const statusBar = window.createStatusBarItem(
+    StatusBarAlignment.Right,
+    Number.MAX_SAFE_INTEGER
+  );
+  statusBar.command = statusBarCommand;
+  statusBar.text = "$(notebook-edit) Edit Custom Status";
+  statusBar.tooltip = "VS Statuses - Edit Custom Status";
+  statusBar.show();
 
   /**
    * Registers the command for propogating updates to the API and receiving a
@@ -56,6 +75,11 @@ export async function activate(context: ExtensionContext) {
   const authDisp = commands.registerCommand(
     "vs-statuses.auth",
     async () => await auth()
+  );
+
+  const setMessageDisp = commands.registerCommand(
+    "vs-statuses.setMessage",
+    async () => await setMessage()
   );
 
   /* ~~~~~~~~~~~~~~~~~~~~~~~~~~Setting Commands~~~~~~~~~~~~~~~~~~~~~~~~~~ */
@@ -91,10 +115,12 @@ export async function activate(context: ExtensionContext) {
   );
 
   context.subscriptions.push(
+    viewDisp,
+    statusBar,
     updateDisp,
     stopUpdate,
     authDisp,
-    viewDisp,
+    setMessageDisp,
     configWorkspaceOnDisp,
     configWorkspaceOffDisp,
     configFilenameOnDisp,

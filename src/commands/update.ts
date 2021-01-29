@@ -39,7 +39,7 @@ const update = async (): Promise<Status[] | null> => {
       !configOptions.get<boolean>("hideWorkspaceName")
         ? workspace.workspaceFolders[0].name
         : null,
-    customMessage: null, // TODO later
+    customMessage: Util.getCustomMessage(),
   };
 
   try {

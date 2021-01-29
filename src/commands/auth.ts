@@ -26,6 +26,7 @@ const auth = async () => {
     console.log(err);
     await Util.context.globalState.update("accessToken", "");
     await Util.context.globalState.update("refreshToken", "");
+    await Util.context.globalState.update("customMessage", null);
 
     window.showInformationMessage(
       "Error occured during authentication. Please try again."

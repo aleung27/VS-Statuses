@@ -20,6 +20,10 @@ export default class Util {
     return this.context.globalState.get<string>("refreshToken", "");
   }
 
+  static getCustomMessage() {
+    return this.context.globalState.get<string | null>("customMessage", null);
+  }
+
   /**
    * If the user has tokens registered in the global state they are logged in
    */
