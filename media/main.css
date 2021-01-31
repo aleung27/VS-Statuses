@@ -43,11 +43,38 @@ body {
   padding: 0 0 0 10px;
   overflow-x: hidden;
   height: 100%;
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  font-weight: var(--vscode-font-weight);
+  color: var(--vscode-foreground);
+}
+
+body.vscode-high-contrast button {
+  border: 1px solid var(--vscode-contrastBorder) !important;
+}
+
+body.vscode-high-contrast .footer {
+  border-right: 1px solid var(--vscode-contrastBorder) !important;
 }
 
 button {
-  width: 100%;
+  width: 80%;
   height: 2rem;
+  background-color: var(--vscode-button-background);
+  color: var(--vscode-button-foreground);
+  font-family: var(--vscode-font-family);
+  font-size: var(--vscode-font-size);
+  font-weight: var(--vscode-font-weight);
+  border: none;
+}
+
+button:hover {
+  background-color: var(--vscode-button-hoverBackground);
+  cursor: pointer;
+}
+
+button:focus {
+  outline: var(--vscode-focusBorder);
 }
 
 .main {
