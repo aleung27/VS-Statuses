@@ -52,6 +52,10 @@ body.vscode-high-contrast {
   .footer {
     border-right: 1px solid var(--vscode-contrastBorder) !important;
   }
+
+  .entry {
+    border-bottom: 1px solid var(--vscode-contrastBorder) !important;
+  }
 }
 
 button {

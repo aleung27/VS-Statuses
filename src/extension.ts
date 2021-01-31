@@ -14,7 +14,6 @@ import { Setting, toggleSetting } from "./utilities/settings";
 import setMessage from "./commands/setMessage";
 
 let interval: NodeJS.Timeout | null = null; // The current update interval sesssion
-//TODO: theming for colors
 //TODO: new icon for extension
 //TODO: devops
 export async function activate(context: ExtensionContext) {
