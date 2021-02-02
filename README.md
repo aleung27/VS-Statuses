@@ -37,7 +37,7 @@ put stuff here
 
 ## :gear: Extension Settings :gear:
 
-Sometimes you just don't want everyone to know about that next big project your making (or that you're STILL not done with that assignment :face_with_head_bandage:).
+Sometimes you just don't want everyone to know about that next big project you're making (or that you're STILL not done with that assignment :face_with_head_bandage:).
 
 Luckily, we've got you covered with the following nifty settings:
 
