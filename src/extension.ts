@@ -14,8 +14,7 @@ import { Setting, toggleSetting } from "./utilities/settings";
 import setMessage from "./commands/setMessage";
 
 let interval: NodeJS.Timeout | null = null; // The current update interval sesssion
-//TODO: new icon for extension
-//TODO: devops
+
 export async function activate(context: ExtensionContext) {
   Util.context = context; // Set the context the extension operates in
   const provider = new StatusViewProvider(context.extensionUri); // The Provider for the webview

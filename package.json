@@ -71,7 +71,7 @@
         {
           "id": "vs-statuses",
           "title": "VS Statuses",
-          "icon": "media/placeholder.svg"
+          "icon": "media/logo.svg"
         }
       ]
     },
@@ -81,7 +81,7 @@
           "type": "webview",
           "id": "vs-statuses.view",
           "name": "VS Statuses",
-          "icon": "media/dep.svg"
+          "icon": "media/logo.svg"
         }
       ]
     },
