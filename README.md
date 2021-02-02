@@ -1,6 +1,24 @@
-# vs-stauses README
+# :loudspeaker: VS Statuses :loudspeaker:
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/aleung27/VS-Statuses?include_prereleases)
 
-This is the README for your extension "VS Statuses". After writing up a brief description, we recommend including the following sections.
+[![GitHub stars](https://img.shields.io/github/stars/aleung27/VS-Statuses)](https://github.com/aleung27/VS-Statuses/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/aleung27/VS-Statuses)](https://github.com/aleung27/VS-Statuses/issues)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/y/aleung27/VS-Statuses)
+
+[![GitHub license](https://img.shields.io/github/license/aleung27/VS-Statuses)](https://github.com/aleung27/VS-Statuses/blob/master/LICENSE)
+[![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Faleung27%2FVS-Statuses)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Faleung27%2FVS-Statuses)
+
+:large_orange_diamond: Want to see what all your friends are working on?
+
+:large_orange_diamond: Want to see who else is coding with you at 3am the night before your project is due?
+
+:large_orange_diamond: Want everyone to know you code in Rust or Julia?
+
+Look no further, this is the extension for you (and your friends!).
+
+VS Statuses is the latest extension for [Visual Studio Code](https://code.visualstudio.com/) bringing a social element to the often lonesome task of programming. Keep in touch with all the friends you follow on Github, seeing their latest statuses containing their recent coding activity whilst also sharing your own status! 
+
+For the VS Statuses API click [here](https://github.com/aleung27/VS-Statuses-api).
 
 ## Features
 
@@ -12,54 +30,37 @@ For example if there is an image subfolder under your extension project workspac
 
 > Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
 
-## Requirements
 
-If you have any requirements or dependencies, add a section describing those and how to install and configure them.
+## :computer: Installation & Requirements :computer:
 
-## Extension Settings
+put stuff here
 
-Include if your extension adds any VS Code settings through the `contributes.configuration` extension point.
+## :gear: Extension Settings :gear:
 
-For example:
+Sometimes you just don't want everyone to know about that next big project your making (or that you're STILL not done with that assignment :face_with_head_bandage:).
 
-This extension contributes the following settings:
+Luckily, we've got you covered with the following nifty settings:
 
-* `myExtension.enable`: enable/disable this extension
-* `myExtension.thing`: set to `blah` to do something
+* Ghost Mode (`vs-statuses.ghostMode`): When you just gotta disappear off the face of the earth for a while, this one is for you. You stop sending status updates and appear offline to all your friends (they will see the last status you had before turning on Ghost Mode). It's a two way street though - you also won't be able to see any new status updates from people you are following. Spooky! :ghost:
+* Hide Workspace Name (`vs-statuses.hideWorkspaceName`): Hides your workspace folder from being transmitted in your status updates.
+* Hide File Name (`vs-statuses.hideFileandLanguageName`): Hides your file name AND the language you are coding in from being transmitted in your status updates.
 
-## Known Issues
+Not only this we make it super easy for you to toggle these settings on and off on the fly from the handy settings located in the top right of the VS Statuses panel.
 
-Calling out known issues can help limit users opening duplicate issues against your extension.
+INSERT IMG HERE FOR LATER
 
-## Release Notes
+## :handshake: Contribution Guide :handshake:
 
-Users appreciate release notes as you update your extension.
+:heart: Great that you want to contribute; contributions are always very welcome! :heart:
 
-### 1.0.0
+Usual Github contribution flow:
+1. Fork this repository
+2. Clone your fork to your local development environment
+3. Create a branch from `master` for you to work off of
+4. Commit and push your changes
+5. Open a pull request
+6. Wait to get approved!
 
-Initial release of ...
+:sparkles::sparkles: And your done! :sparkles::sparkles:
 
-### 1.0.1
-
-Fixed issue #.
-
-### 1.1.0
-
-Added features X, Y, and Z.
-
------------------------------------------------------------------------------------------------------------
-
-## Working with Markdown
-
-**Note:** You can author your README using Visual Studio Code.  Here are some useful editor keyboard shortcuts:
-
-* Split the editor (`Cmd+\` on macOS or `Ctrl+\` on Windows and Linux)
-* Toggle preview (`Shift+CMD+V` on macOS or `Shift+Ctrl+V` on Windows and Linux)
-* Press `Ctrl+Space` (Windows, Linux) or `Cmd+Space` (macOS) to see a list of Markdown snippets
-
-### For more information
-
-* [Visual Studio Code's Markdown Support](http://code.visualstudio.com/docs/languages/markdown)
-* [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
-
-**Enjoy!**
+Make sure to add comments as you make your changes. Follow existing coding patterns and idioms already present in the project.
