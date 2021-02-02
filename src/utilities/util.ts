@@ -2,6 +2,7 @@ import { ExtensionContext } from "vscode";
 
 /**
  * Utility class storing the global state for our extension.
+ * Shout to https://github.com/ide-stories/vscode-stories for boilerplate
  */
 export default class Util {
   static context: ExtensionContext;

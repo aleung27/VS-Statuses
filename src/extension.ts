@@ -1,10 +1,4 @@
-import {
-  commands,
-  ExtensionContext,
-  window,
-  authentication,
-  StatusBarAlignment,
-} from "vscode";
+import { commands, ExtensionContext, window, StatusBarAlignment } from "vscode";
 
 import auth from "./commands/auth";
 import update from "./commands/update";
