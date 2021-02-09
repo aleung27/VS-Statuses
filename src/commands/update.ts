@@ -13,7 +13,6 @@ import Status from "../interfaces/Status";
  * all friends of the user who have an account. This is returned by the func
  */
 const update = async (): Promise<Status[] | null> => {
-  console.log("updating");
   const configOptions = workspace.getConfiguration("vs-statuses");
 
   // Stop status updates for the user if in ghost mode or if they're not logged in
