@@ -1,8 +1,15 @@
 {
   "name": "vs-statuses",
   "displayName": "VS Statuses",
-  "description": "",
+  "description": "Keep up to date with your friends!",
   "version": "0.0.1",
+  "author": {
+    "name": "aleung27"
+  },
+  "icon": "media/logo.png",
+  "galleryBanner": {
+    "theme": "dark"
+  },
   "engines": {
     "vscode": "^1.52.0"
   },
@@ -71,7 +78,7 @@
         {
           "id": "vs-statuses",
           "title": "VS Statuses",
-          "icon": "media/logo.svg"
+          "icon": "media/logo-square.svg"
         }
       ]
     },
@@ -81,7 +88,7 @@
           "type": "webview",
           "id": "vs-statuses.view",
           "name": "VS Statuses",
-          "icon": "media/logo.svg"
+          "icon": "media/logo-square.svg"
         }
       ]
     },
@@ -202,5 +209,14 @@
     "moment": "^2.29.1",
     "scss": "^0.2.4",
     "vscode-codicons": "0.0.13"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aleung27/VS-Statuses"
+  },
+  "bugs": {
+    "url": "https://github.com/aleung27/VS-Statuses/issues"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/aleung27/VS-Statuses/blob/master/README.md"
 }
