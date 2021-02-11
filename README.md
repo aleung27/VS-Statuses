@@ -1,4 +1,5 @@
-# :loudspeaker: VS Statuses :loudspeaker:
+# VS Statuses
+
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/aleung27/VS-Statuses?include_prereleases)
 
 [![GitHub stars](https://img.shields.io/github/stars/aleung27/VS-Statuses)](https://github.com/aleung27/VS-Statuses/stargazers)
@@ -16,24 +17,50 @@
 
 Look no further, this is the extension for you (and your friends!).
 
-VS Statuses is the latest extension for [Visual Studio Code](https://code.visualstudio.com/) bringing a social element to the often lonesome task of programming. Keep in touch with all the friends you follow on Github, seeing their latest statuses containing their recent coding activity whilst also sharing your own status! 
+VS Statuses is the latest extension for [Visual Studio Code](https://code.visualstudio.com/) bringing a social element to the often lonesome task of programming. Keep in touch with all the friends you follow on Github, seeing their latest statuses containing their recent coding activity whilst also sharing your own status!
 
 For the VS Statuses API click [here](https://github.com/aleung27/VS-Statuses-api).
 
+## Support
+
+Donations of any amount are greatly appreciated to help fund my uni-student diet of instant ramen packs and my bubble tea addiction (along with servers - those are expensive af!)
+
+<p style="text-align:center;"><a href='https://ko-fi.com/C0C73LYUO' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi4.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com'/></a></p>
+
 ## Features
 
-Describe specific features of your extension including screenshots of your extension in action. Image paths are relative to this README file.
+- See statuses of users that you follow on **Github**
+- Transmit your own status so followers can see what you are working on
+- Statuses are both automatically transmitted and received - even when not viewing the VS Statuses tab!
+- Seamless integration with **Github Authentication** leverages their platform to create a social network with no need to create a profile to use VS Statuses. Follow more people to see their statuses!
+- Ability to choose what data to share with your followers including obscuration of file names, folder names and the ability to enter "Ghost Mode"
+- Bottom taskbar icon to set a custom message for your status
 
-For example if there is an image subfolder under your extension project workspace:
+<figure style="text-align:center;"><img src='https://i.postimg.cc/Z5KbFkq8/Home.png' border='0' alt='Home.png'/><figcaption>Click on the megaphone icon in the sidebar to use VS Statuses</figcaption></figure>
 
-\!\[feature X\]\(images/feature-x.png\)
+Statuses consist of the following information:
 
-> Tip: Many popular extensions utilize animations. This is an excellent way to show off your extension! We recommend short, focused animations that are easy to follow.
+- Github Username (with display name if set)
+- Profile Picture from Github
+- Activity timestamp showing last time the user was active
+- A custom status message set by the user (optional)
+- Filename with language icon (optional)
+- Folder name with a folder icon (optional)
 
+<figure style="text-align:center;"><img src="https://media.giphy.com/media/bB9ANTkv3MndzX2N3r/giphy.gif" border="0" alt="Edit Status.png" /><figcaption>Update your custom status message in the bottom taskbar</figcaption></figure> 
 
-## :computer: Installation & Requirements :computer:
+## :computer: Installation :computer:
 
-put stuff here
+1. In the sidebar of VS Code, click on the **Extensions** icon
+2. Type `VS Statuses` into the searchbar
+3. Click on the **Install** button
+4. After installation, a new icon should appear on your sidebar. Click on it to use the `VS Statuses` extension!
+
+Alternatively, open up the `Quick Open` dialog using `Ctrl + P` and type:
+
+`ext install VS Statuses`
+
+Note that on initial installation you will need to authenticate with Github in order to use the extension!
 
 ## :gear: Extension Settings :gear:
 
@@ -47,13 +74,14 @@ Luckily, we've got you covered with the following nifty settings:
 
 Not only this we make it super easy for you to toggle these settings on and off on the fly from the handy settings located in the top right of the VS Statuses panel.
 
-INSERT IMG HERE FOR LATER
+[![Settings.png](https://i.postimg.cc/RZ2JvRdj/Settings.png)](https://postimg.cc/9DtQpyvp)
 
 ## :handshake: Contribution Guide :handshake:
 
 :heart: Great that you want to contribute; contributions are always very welcome! :heart:
 
 Usual Github contribution flow:
+
 1. Fork this repository
 2. Clone your fork to your local development environment
 3. Create a branch from `master` for you to work off of
@@ -64,3 +92,5 @@ Usual Github contribution flow:
 :sparkles::sparkles: And your done! :sparkles::sparkles:
 
 Make sure to add comments as you make your changes. Follow existing coding patterns and idioms already present in the project.
+
+Found a bug or got a suggestion? Feel free to submit a new [Issue](https://github.com/aleung27/VS-Statuses/issues)
