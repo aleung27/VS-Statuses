@@ -3,3 +3,6 @@ dist
 node_modules
 .vscode-test/
 *.vsix
+media/Home.png
+media/Settings.png
+media/Status.gif
