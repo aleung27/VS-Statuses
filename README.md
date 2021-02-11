@@ -25,7 +25,7 @@ For the VS Statuses API click [here](https://github.com/aleung27/VS-Statuses-api
 
 Donations of any amount are greatly appreciated to help fund my uni-student diet of instant ramen packs and my bubble tea addiction (along with servers - those are expensive af!)
 
-<p style="text-align:center;"><a href='https://ko-fi.com/C0C73LYUO' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi4.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com'/></a></p>
+<p style="text-align:center;" align="center"><a href='https://ko-fi.com/C0C73LYUO' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi4.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com'/></a></p>
 
 ## Features
 
@@ -36,7 +36,8 @@ Donations of any amount are greatly appreciated to help fund my uni-student diet
 - Ability to choose what data to share with your followers including obscuration of file names, folder names and the ability to enter "Ghost Mode"
 - Bottom taskbar icon to set a custom message for your status
 
-<figure style="text-align:center;"><img src='https://i.postimg.cc/Z5KbFkq8/Home.png' border='0' alt='Home.png'/><figcaption>Click on the megaphone icon in the sidebar to use VS Statuses</figcaption></figure>
+<figure><img src='https://i.postimg.cc/Z5KbFkq8/Home.png' border='0' alt='Home.png'/><p style="text-align:center" align="center">Click on the megaphone icon in the sidebar to use VS Statuses</p></figure>
+<br/>
 
 Statuses consist of the following information:
 
@@ -47,7 +48,8 @@ Statuses consist of the following information:
 - Filename with language icon (optional)
 - Folder name with a folder icon (optional)
 
-<figure style="text-align:center;"><img src="https://media.giphy.com/media/bB9ANTkv3MndzX2N3r/giphy.gif" border="0" alt="Edit Status.png" /><figcaption>Update your custom status message in the bottom taskbar</figcaption></figure> 
+<figure><img src="https://s2.gifyu.com/images/status.gif" border="0" alt="Edit Status.png" width="100%"/><p style="text-align:center;" align="center">Update your custom status message in the bottom taskbar</p></figure> 
+<br/>
 
 ## :computer: Installation :computer:
 
