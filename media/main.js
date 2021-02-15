@@ -70,6 +70,8 @@
     if (statuses.length) {
       // For each element, generate the html divs and then combine them
       // to make the overall entry for each status
+      statuses.sort((a, b) => b.timestamp - a.timestamp);
+
       for (const status of statuses) {
         const entryDiv = document.createElement("div");
         entryDiv.className = "entry";
