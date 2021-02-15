@@ -58,12 +58,6 @@ export async function activate(context: ExtensionContext) {
     interval = setInterval(wrapper, 60000); // Have the update func run automatically
   });
 
-  let stopUpdate = commands.registerCommand("vs-statuses.stopUpdate", () => {
-    if (interval) {
-      clearInterval(interval);
-    }
-  });
-
   const authDisp = commands.registerCommand(
     "vs-statuses.auth",
     async () => await auth()
@@ -110,7 +104,6 @@ export async function activate(context: ExtensionContext) {
     viewDisp,
     statusBar,
     updateDisp,
-    stopUpdate,
     authDisp,
     setMessageDisp,
     configWorkspaceOnDisp,

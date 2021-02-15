@@ -28,11 +28,6 @@
         "category": "VS Statuses"
       },
       {
-        "command": "vs-statuses.stopUpdate",
-        "title": "Stop updates",
-        "category": "VS Statuses"
-      },
-      {
         "command": "vs-statuses.auth",
         "title": "Authenticate with Github",
         "category": "VS Statuses"
