@@ -8,9 +8,6 @@
   },
   "publisher": "aleung27",
   "icon": "media/logo.png",
-  "galleryBanner": {
-    "theme": "dark"
-  },
   "engines": {
     "vscode": "^1.52.0"
   },
