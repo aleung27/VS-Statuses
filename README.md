@@ -1,6 +1,10 @@
-# VS Statuses
+# VS Statuses 📢
 
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/aleung27/VS-Statuses?include_prereleases)
+
+![Visual Studio Marketplace Downloads](https://img.shields.io/visual-studio-marketplace/d/aleung27.vs-statuses)
+![Visual Studio Marketplace Last Updated](https://img.shields.io/visual-studio-marketplace/last-updated/aleung27.vs-statuses)
+![Visual Studio Marketplace Rating](https://img.shields.io/visual-studio-marketplace/r/aleung27.vs-statuses)
 
 [![GitHub stars](https://img.shields.io/github/stars/aleung27/VS-Statuses)](https://github.com/aleung27/VS-Statuses/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/aleung27/VS-Statuses)](https://github.com/aleung27/VS-Statuses/issues)
@@ -9,11 +13,11 @@
 [![GitHub license](https://img.shields.io/github/license/aleung27/VS-Statuses)](https://github.com/aleung27/VS-Statuses/blob/master/LICENSE)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Faleung27%2FVS-Statuses)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Faleung27%2FVS-Statuses)
 
-Want to see what all your friends are working on?
+🔸 Want to see what all your friends are working on?
 
-Want to see who else is coding with you at 3am the night before your project is due?
+🔸 Want to see who else is coding with you at 3am the night before your project is due?
 
-Want everyone to know you code in Rust or Julia?
+🔸 Want everyone to know you code in Rust or Julia?
 
 Look no further, this is the extension for you (and your friends!).
 
@@ -21,13 +25,14 @@ VS Statuses is the latest extension for [Visual Studio Code](https://code.visual
 
 For the VS Statuses API click [here](https://github.com/aleung27/VS-Statuses-api).
 
-## Support
+## 🙏🏻 Support 🙏🏻
 
-Donations of any amount are greatly appreciated to help fund my uni-student diet of instant ramen packs and my bubble tea addiction (along with servers - those are expensive af!)
+Donations of any amount are greatly appreciated to help fund my uni-student diet of instant ramen packs and my bubble tea addiction 🍜 (along with servers - those are expensive af!)
 
 <p style="text-align:center;" align="center"><a href='https://ko-fi.com/C0C73LYUO' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://cdn.ko-fi.com/cdn/kofi4.png?v=2' border='0' alt='Buy Me a Coffee at ko-fi.com'/></a></p>
 
-## Features
+Sharing this extension with your friends, family, colleagues or anyone is also a great way to help support this project and you have my thanks 🗣! 
+## 💡 Features 💡
 
 - See statuses of users that you follow on **Github**
 - Transmit your own status so followers can see what you are working on
@@ -51,7 +56,15 @@ Statuses consist of the following information:
 <figure><img src="https://s2.gifyu.com/images/status.gif" border="0" alt="Edit Status.png" width="100%"/><p style="text-align:center;" align="center">Update your custom status message in the bottom taskbar</p></figure> 
 <br/>
 
-## Installation
+## 🚗 Roadmap 🚗
+
+🔹 More fine-grained detection of 'active' status to reflect when idle or when VS Code is minimised
+
+🔹 Interactive features between users (e.g. poking)
+
+Want to see something else not on the list? Head [here](https://github.com/aleung27/VS-Statuses/issues) and submit a ticket!
+
+## 💻 Installation 💻
 
 1. In the sidebar of VS Code, click on the **Extensions** icon
 2. Type `VS Statuses` into the searchbar
@@ -64,13 +77,13 @@ Alternatively, open up the `Quick Open` dialog using `Ctrl + P` and type:
 
 Note that on initial installation you will need to authenticate with Github in order to use the extension!
 
-## Extension Settings
+## ⚙️ Extension Settings ⚙️
 
-Sometimes you just don't want everyone to know about that next big project you're making (or that you're STILL not done with that assignment :face_with_head_bandage:).
+Sometimes you just don't want everyone to know about that next big project you're making (or that you're STILL not done with that assignment 😣).
 
 Luckily, we've got you covered with the following nifty settings:
 
-* Ghost Mode (`vs-statuses.ghostMode`): When you just gotta disappear off the face of the earth for a while, this one is for you. You stop sending status updates and appear offline to all your friends (they will see the last status you had before turning on Ghost Mode). It's a two way street though - you also won't be able to see any new status updates from people you are following. Spooky!
+* Ghost Mode (`vs-statuses.ghostMode`): When you just gotta disappear off the face of the earth for a while, this one is for you. You stop sending status updates and appear offline to all your friends (they will see the last status you had before turning on Ghost Mode). It's a two way street though - you also won't be able to see any new status updates from people you are following. Spooky! 👻
 * Hide Workspace Name (`vs-statuses.hideWorkspaceName`): Hides your workspace folder from being transmitted in your status updates.
 * Hide File Name (`vs-statuses.hideFileandLanguageName`): Hides your file name AND the language you are coding in from being transmitted in your status updates.
 
@@ -78,9 +91,9 @@ Not only this we make it super easy for you to toggle these settings on and off 
 
 [![Settings.png](https://i.postimg.cc/RZ2JvRdj/Settings.png)](https://postimg.cc/9DtQpyvp)
 
-## Contribution Guide
+## 🤝 Contribution Guide 🤝
 
-Great that you want to contribute; contributions are always very welcome!
+💙 Great that you want to contribute; contributions are always very welcome! 💙
 
 Usual Github contribution flow:
 
@@ -91,7 +104,7 @@ Usual Github contribution flow:
 5. Open a pull request
 6. Wait to get approved!
 
-And your done!
+✨ And your done! ✨
 
 Make sure to add comments as you make your changes. Follow existing coding patterns and idioms already present in the project.
 
