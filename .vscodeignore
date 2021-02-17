@@ -12,5 +12,3 @@ vsc-extension-quickstart.md
 node_modules/**
 out/
 **/webpack.config.js
-!node_modules/moment/**
-!node_modules/vscode-codicons/**

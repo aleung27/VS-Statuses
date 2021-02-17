@@ -143,28 +143,11 @@ export default class StatusViewProvider implements WebviewViewProvider {
       Uri.joinPath(this._extensionUri, "media", "main.css")
     );
 
-    const codiconsUri = webview.asWebviewUri(
-      Uri.joinPath(
-        this._extensionUri,
-        "node_modules",
-        "vscode-codicons",
-        "dist",
-        "codicon.css"
-      )
-    );
-    const codiconsFontUri = webview.asWebviewUri(
-      Uri.joinPath(
-        this._extensionUri,
-        "node_modules",
-        "vscode-codicons",
-        "dist",
-        "codicon.ttf"
-      )
-    );
-
-    const momentUri = webview.asWebviewUri(
-      Uri.joinPath(this._extensionUri, "node_modules", "moment", "moment.js")
-    );
+    // Links to the codicons css and ttf files hosted by unpkg
+    const codiconsUri =
+      "https://unpkg.com/vscode-codicons@0.0.14/dist/codicon.css";
+    const codiconsFontUri =
+      "https://unpkg.com/vscode-codicons@0.0.14/dist/codicon.ttf";
 
     const nonce = getNonce();
 
@@ -179,7 +162,7 @@ export default class StatusViewProvider implements WebviewViewProvider {
       <link href="${mainCssUri}" rel="stylesheet" />
       <link href="${codiconsUri}" rel="stylesheet" />
 
-      <script nonce="${nonce}" src="${momentUri}"></script>
+      <script nonce=${nonce} src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous"></script>
       <script nonce="${nonce}" src="${iconsUri}"></script>
     </head>
     <body>
