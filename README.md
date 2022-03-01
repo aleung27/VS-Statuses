@@ -13,6 +13,8 @@
 [![GitHub license](https://img.shields.io/github/license/aleung27/VS-Statuses)](https://github.com/aleung27/VS-Statuses/blob/master/LICENSE)
 [![Twitter](https://img.shields.io/twitter/url?style=social&url=https%3A%2F%2Fgithub.com%2Faleung27%2FVS-Statuses)](https://twitter.com/intent/tweet?text=Wow:&url=https%3A%2F%2Fgithub.com%2Faleung27%2FVS-Statuses)
 
+**Depreciated and disabled extension (server has been shut down)**
+
 🔸 Want to see what all your friends are working on?
 
 🔸 Want to see who else is coding with you at 3am the night before your project is due?
